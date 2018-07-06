@@ -15,7 +15,7 @@ class  CustomNav extends React.Component {
         <Navbar.Collapse>
           <Nav pullRight>
             <NavItem>
-              <Link to="/">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </NavItem>
             <NavItem>
               <Link to="/recipes">Recipes</Link>

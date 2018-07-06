@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomNav from './components/CustomNav';
 import Recipe from './components/Recipe';
 import Home from './components/Home';
-import RecipePost from './components/RecipePost'
+import Blogs from './components/Blogs'
+import RecipePost from './components/RecipePost';
+import BlogPost from './components/BlogPost';
 
 
 class App extends Component {
@@ -13,9 +15,11 @@ class App extends Component {
         <Router>
           <div>
             <CustomNav/>
-            <Route path="/recipes" component={Recipe} />
+            <Route exact path="/recipes" component={Recipe} />
             <Route path="/recipes/post" component={RecipePost} />
             <Route exact path="/" component={Home} />
+            <Route path="/blog/post" component={BlogPost} />
+            <Route path="/blog" component={Blogs} />
           </div>
         </Router>
       </div>

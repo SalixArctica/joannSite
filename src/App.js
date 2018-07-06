@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import CustomNav from './CustomNav';
-import Recipe from './Recipe'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CustomNav from './components/CustomNav';
+import Recipe from './components/Recipe';
+import Home from './components/Home';
+import RecipePost from './components/RecipePost'
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <CustomNav/>
-        <Recipe/>
+        <Router>
+          <div>
+            <CustomNav/>
+            <Route path="/recipes" component={Recipe} />
+            <Route path="/recipes/post" component={RecipePost} />
+            <Route exact path="/" component={Home} />
+          </div>
+        </Router>
       </div>
     );
   }

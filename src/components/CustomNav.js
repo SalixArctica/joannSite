@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './CustomNav.css'
 
 class  CustomNav extends React.Component {
   render() {
@@ -13,13 +15,13 @@ class  CustomNav extends React.Component {
         <Navbar.Collapse>
           <Nav pullRight>
             <NavItem>
-              Blog
+              <Link to="/">Blog</Link>
             </NavItem>
             <NavItem>
-              Recipes
+              <Link to="/recipes">Recipes</Link>
             </NavItem>
             <NavItem>
-              HempWorx
+              <Link to="www.hempworx.com/JoAnnL">HempWorx</Link>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

@@ -4,8 +4,9 @@ import CustomNav from './components/CustomNav';
 import Recipe from './components/Recipe';
 import Home from './components/Home';
 import Blogs from './components/Blogs'
-import RecipePost from './components/RecipePost';
-import BlogPost from './components/BlogPost';
+import RecipeForm from './components/RecipeForm';
+import BlogForm from './components/BlogForm';
+import Recipes from './components/Recipes';
 
 
 class App extends Component {
@@ -15,10 +16,11 @@ class App extends Component {
         <Router>
           <div>
             <CustomNav/>
-            <Route exact path="/recipes" component={Recipe} />
-            <Route path="/recipes/post" component={RecipePost} />
+            <Route exact path="/recipes" component={Recipes} />
+            <Route exact path="/recipes/1" component={Recipe} />
+            <Route path="/recipes/post" component={RecipeForm} />
             <Route exact path="/" component={Home} />
-            <Route path="/blog/post" component={BlogPost} />
+            <Route path="/blog/post" component={BlogForm} />
             <Route path="/blog" component={Blogs} />
           </div>
         </Router>

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Row, Col, Grid } from 'react-bootstrap';
 
-class BlogPost extends React.Component {
+class BlogForm extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -41,14 +42,29 @@ class BlogPost extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.value} onChange={this.handleTitleChange} placeholder="title" />
-        <input type="text" value={this.state.value} onChange={this.handleDateChange} placeholder="date" />
-        <input type="text" value={this.state.value} onChange={this.handleContentChange} placeholder="content" />
-        <input type="submit" value="Submit"/>
-      </form>
+      <Grid>
+        <form onSubmit={this.handleSubmit}>
+          <Row>
+            <Col lg={4}>
+              <input type="text" value={this.state.value} onChange={this.handleTitleChange} placeholder="title" />
+            </Col>
+            <Col lg={4}/>
+            <Col lg={4}>
+              <input type="text" value={this.state.value} onChange={this.handleDateChange} placeholder="date" />
+            </Col>
+        </Row>
+          <Row>
+            <Col lg={12}>
+                <input type="text" value={this.state.value} onChange={this.handleContentChange} placeholder="content" />
+            </Col>
+          </Row>
+          <Row>
+            <input type="submit" value="Submit"/>
+          </Row>
+        </form>
+      </Grid>
     );
   }
 }
 
-export default BlogPost;
+export default BlogForm;

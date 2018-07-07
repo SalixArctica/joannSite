@@ -5,7 +5,7 @@ db = {
       name: "Cured Meat",
       ingredients: ['meat', 'salt'],
       instrcutions:  ["put salt on meat", "wait...", "enjoy!"],
-      image: "/public/assets/meat.jpg"
+      image: "meat.jpg"
     }
   ],
   blogs: [

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './CustomNav.css'
 
 class  CustomNav extends React.Component {
@@ -21,7 +21,7 @@ class  CustomNav extends React.Component {
               <Link to="/recipes">Recipes</Link>
             </NavItem>
             <NavItem>
-              <Link to="www.hempworx.com/JoAnnL">HempWorx</Link>
+              <a src="www.hempworx.com/JoAnnL">HempWorx</a>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

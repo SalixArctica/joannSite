@@ -1,8 +1,9 @@
 const express = require('express');
-const db = require('./db.js');
+const db = require('./db');
 const logging = require('morgan');
 const bodyParser = require('body-parser');
-const blogRouter = require('./blogRouter.js');
+const blogRouter = require('./blogRouter');
+const recipeRouter = require('./recipeRouter')
 
 const port = 5000;
 
@@ -19,11 +20,7 @@ app.use(function(req, res, next) {
 
 app.use('/api/blog', blogRouter);
 
-app.get('/api/recipes/0', (req, res) => {
-  res.json({recipe: db.recipes[0]});
-});
-
-
+app.use('/api/recipes', recipeRouter);
 
 app.listen(port, ()=> {
   console.log(`Server listening on port ${port}`);

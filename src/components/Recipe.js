@@ -20,7 +20,7 @@ class Recipe extends Component {
         <Grid>
           <Row>
             <Col lg={8}>
-              <Image id="food" rounded responsive src="http://ichef.bbci.co.uk/wwfeatures/wm/live/1600_640/images/live/p0/63/cq/p063cq8z.jpg"></Image>
+              <Image id="food" rounded responsive src={process.env.PUBLIC_URL + '/assets/' + this.state.thing.recipe.image}></Image>
             </Col>
             <Col  lg={4}>
               <h1>{this.state.thing.recipe.name}</h1>

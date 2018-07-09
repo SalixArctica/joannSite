@@ -1,12 +1,12 @@
 db = {
   recipes:  [
     {
-      id: 1,
+      id: 0,
       name: "Cured Meat",
       ingredients: ['meat', 'salt'],
-      instrcutions:  ["put salt on meat", "wait...", "enjoy!"],
-      image: "meat.jpg"
-    }
+      instructions:  ["put salt on meat", "wait...", "enjoy!"],
+      image: "meat.jpg",
+    },
   ],
   blogs: [
     {
@@ -23,7 +23,7 @@ db = {
     }
   ],
   nextBlogId: 3,
-  nextRecipeId: 2,
+  nextRecipeId: 1,
 };
 
 module.exports = db;

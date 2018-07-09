@@ -5,28 +5,31 @@ import './Recipe.css';
 class Recipe extends Component {
   constructor(){
     super();
-    this.state = {thing: []}
+    this.state = {}
   }
 
   componentDidMount(){
-    fetch('http://localhost:5000/api/recipes/0')
+    fetch('http://localhost:5000/api' + this.props.location.pathname)
       .then(res => res.json())
-      .then(recipe => this.setState({thing: recipe}))
+      .then(recipe => this.setState({recipe}))
+      .catch(() => {
+        console.log('err');
+      })
   }
 
   renderAfterApiCall = () =>{
-    if(this.state.thing.recipe){
+    if(this.state.recipe){
       return(
         <Grid>
           <Row>
             <Col lg={8}>
-              <Image id="food" rounded responsive src={process.env.PUBLIC_URL + '/assets/' + this.state.thing.recipe.image}></Image>
+              <Image id="food" rounded responsive src={process.env.PUBLIC_URL + '/assets/' + this.state.recipe.image}></Image>
             </Col>
             <Col  lg={4}>
-              <h1>{this.state.thing.recipe.name}</h1>
+              <h1>{this.state.recipe.name}</h1>
               <h4>Ingredients</h4>
               <ul>
-                {this.state.thing.recipe.ingredients.map(ingredient =>
+                {this.state.recipe.ingredients.map(ingredient =>
                     <li key={ingredient}>{ingredient}</li>
                 )}
               </ul>
@@ -36,7 +39,7 @@ class Recipe extends Component {
             <Col lg = {12}>
                 <h2>Prep</h2>
                 <ol>
-                  {this.state.thing.recipe.instrcutions.map(instruction =>
+                  {this.state.recipe.instructions.map(instruction =>
                     <li>{instruction}</li>
                   )}
                 </ol>
@@ -46,9 +49,10 @@ class Recipe extends Component {
       );
     }
     else{
-      return null;
+      return <h>loading...</h>;
     }
   };
+
 
   render() {
     return(

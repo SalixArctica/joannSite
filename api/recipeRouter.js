@@ -1,34 +1,41 @@
 const express = require('express');
 const db = require('./db');
-const fileUpload = require('express-fileupload');
+const multer = require('multer');
 
 const recipeRouter = express.Router();
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../public/assets')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
 
 recipeRouter.get('/', (req, res) => {
   res.json({recipes: db.recipes});
 });
 
 recipeRouter.get('/:recipeId', (req, res) => {
-  res.json({recipe: db.recipes[req.params.recipeId]});
+  res.send(db.recipes[req.params.recipeId]);
 });
 
-recipeRouter.use(fileUpload());
+recipeRouter.post('/', upload.single('img'), (req, res) => {
+  let newRecipe = {};
+  newRecipe.id = db.nextRecipeId;
+  newRecipe.name = req.body.name;
+  newRecipe.ingredients = JSON.parse(req.body.ingredients);
+  newRecipe.instructions = JSON.parse(req.body.instructions);
+  newRecipe.image = req.file.filename;
 
-recipeRouter.post('/', (req, res) => {
-  res.status(200).send();
-/*
-  let img = req.files.img;
-  let recipe = req.body;
+  db.recipes.push(newRecipe);
+  db.nextRecipeId++;
 
-  recipe.image = img.name;
+  res.status(204).send();
 
-  img.mv('../public/assets/' + img.name, err => {
-    if(err)
-      return res.status(500).send(err);
-
-    console.log('it worked!');
-  })
-  */
 });
 
 module.exports = recipeRouter;

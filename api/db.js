@@ -1,4 +1,7 @@
-db = {
+const yaml = require('js-yaml');
+const fs = require('fs');
+
+let db = {
   recipes:  [
     {
       id: 0,
@@ -25,5 +28,17 @@ db = {
   nextBlogId: 3,
   nextRecipeId: 1,
 };
+
+saveDb = (database) => {
+  fs.writeFile('database.json');
+}
+
+loadDb = () => {
+  let a = fs.readFileSync('./database.json');
+  return a;
+}
+
+saveDb(db);
+console.log(loadDb());
 
 module.exports = db;

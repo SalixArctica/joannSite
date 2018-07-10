@@ -17,8 +17,8 @@ class App extends Component {
           <div>
             <CustomNav/>
             <Route exact path="/recipes" component={Recipes} />
-            <Route path="/recipes/:id" component={Recipe} />
-            <Route path="/recipes/post" component={RecipeForm} />
+            <Route exact path="/recipes/:id" component={Recipe} />
+            <Route exact path="/recipes/post" component={RecipeForm} />
             <Route exact path="/" component={Home} />
             <Route path="/blog/post" component={BlogForm} />
             <Route path="/blog" component={Blogs} />

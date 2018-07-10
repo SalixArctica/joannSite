@@ -11,13 +11,17 @@ class Recipes extends React.Component {
   componentDidMount() {
     fetch('http://localhost:5000/api/recipes')
     .then(res => res.json())
-    .then(recipes => this.setState({recipes}));
+    .then(recipes => this.setState({recipes}))
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   renderAfterApiCall = () => {
     if(this.state.recipes){
       return(
         <Grid>
+          <h1>Recipes</h1>
           {this.state.recipes.recipes.map(recipe =>
             <div>
               <Row>

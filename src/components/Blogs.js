@@ -10,7 +10,10 @@ class Blogs extends React.Component {
   componentDidMount() {
     fetch('http://localhost:5000/api/blog')
     .then(res => res.json())
-    .then(blogs => this.setState({blogs}));
+    .then(blogs => this.setState({blogs}))
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   renderAfterApiCall = () => {

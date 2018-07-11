@@ -21,7 +21,7 @@ class Blogs extends React.Component {
       console.log(this.state.blogs);
       return (
         <Grid>
-          {this.state.blogs.blogs.map(blog =>
+          {this.state.blogs.map(blog =>
             <div>
               <Row>
                 <Col lg={8}>

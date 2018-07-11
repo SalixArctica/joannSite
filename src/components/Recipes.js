@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './css/Recipes.css'
 
 class Recipes extends React.Component {
   constructor() {
@@ -24,13 +25,15 @@ class Recipes extends React.Component {
           <h1>Recipes</h1>
           {this.state.recipes.recipes.map(recipe =>
             <div>
-              <Row>
                 <Col lg={4}>
+                  <Image circle thumbnail src={process.env.PUBLIC_URL + '/assets/' + recipe.image}/>
                   <Link to={"/recipes/" + recipe.id}><h2>{recipe.name}</h2></Link>
                 </Col>
-              </Row>
             </div>
           )}
+          <Row>
+            <span/>
+          </Row>
         </Grid>
       );
     }

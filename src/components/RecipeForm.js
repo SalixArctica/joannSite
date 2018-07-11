@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Col, Row} from 'react-bootstrap';
+import {Grid, Col, Row, Button} from 'react-bootstrap';
 
 class RecipeForm extends React.Component {
 
@@ -71,30 +71,22 @@ class RecipeForm extends React.Component {
       <div>
         <Grid>
         <Row>
-        <form onSubmit={this.handleSubmit}>
-          <Col lg={3}>
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
             <input type="text" id="name" value={this.state.value} onChange={this.handleNameChange} placeholder="name"/>
-          </Col>
-          <Col lg={3}>
             {this.state.ingredients.map((ingredient, id) => (
               <div>
                 <input type="text" id="ingredient" placeholder={'ingredient ' + (id + 1)} onChange={this.handleIngredientChange(id)}/>
               </div>
             ))}
-            <button onClick={this.addIngredient}>add ingredient</button>
-          </Col>
-          <Col lg={3}>
+            <Button onClick={this.addIngredient}>add ingredient</Button>
             {this.state.instructions.map((instruction, id) => (
               <div>
                 <input type="text" id="instruction" placeholder={'instruction ' + (id + 1)} onChange={this.handleinstructionChange(id)}/>
               </div>
             ))}
-            <button onClick={this.addInstruction}>add instruction</button>
-          </Col>
-          <Col lg={3}>
+            <Button onClick={this.addInstruction}>add instruction</Button>
             <input type="file" onChange={this.handleFileAdd}/>
             <input type="submit" value="Submit"/>
-          </Col>
         </form>
         </Row>
       </Grid>

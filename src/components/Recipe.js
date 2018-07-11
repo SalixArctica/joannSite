@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Grid, Col, Row } from 'react-bootstrap';
-import './Recipe.css';
+import './css/Recipe.css';
 
 class Recipe extends Component {
   constructor(){
@@ -23,7 +23,7 @@ class Recipe extends Component {
         <Grid>
           <Row>
             <Col lg={8}>
-              <Image id="food" rounded responsive src={process.env.PUBLIC_URL + '/assets/' + this.state.recipe.image}></Image>
+              <Image id="food" responsive rounded src={process.env.PUBLIC_URL + '/assets/' + this.state.recipe.image}></Image>
             </Col>
             <Col  lg={4}>
               <h1>{this.state.recipe.name}</h1>
@@ -40,8 +40,11 @@ class Recipe extends Component {
                 <h2>Prep</h2>
                 <ol>
                   {this.state.recipe.instructions.map(instruction =>
-                    <li>{instruction}</li>
+                    <div>
+                      <li>{instruction}</li>
+                    </div>
                   )}
+
                 </ol>
             </Col>
           </Row>

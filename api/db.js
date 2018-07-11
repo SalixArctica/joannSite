@@ -29,16 +29,4 @@ let db = {
   nextRecipeId: 1,
 };
 
-saveDb = (database) => {
-  fs.writeFile('database.json');
-}
-
-loadDb = () => {
-  let a = fs.readFileSync('./database.json');
-  return a;
-}
-
-saveDb(db);
-console.log(loadDb());
-
 module.exports = db;

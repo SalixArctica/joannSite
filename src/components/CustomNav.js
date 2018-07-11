@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import './CustomNav.css'
+import './css/CustomNav.css'
 
 class  CustomNav extends React.Component {
   render() {
@@ -11,17 +11,18 @@ class  CustomNav extends React.Component {
           <Navbar.Brand>
             Joann Site
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
             <NavItem>
-              <Link to="/blog">Blog</Link>
+              <Link id="navLink" to="/blog">Blog</Link>
             </NavItem>
             <NavItem>
-              <Link to="/recipes">Recipes</Link>
+              <Link id="navLink" to="/recipes">Recipes</Link>
             </NavItem>
             <NavItem>
-              <a src="www.hempworx.com/JoAnnL">HempWorx</a>
+              <a id="navLink" src="www.hempworx.com/JoAnnL">HempWorx</a>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

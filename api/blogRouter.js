@@ -4,11 +4,11 @@ const db = require('./db');
 const blogRouter = express.Router();
 
 blogRouter.get('/', (req, res) => {
-  res.json({blogs: db.blogs});
+  res.send(db.blogs);
 });
 
 blogRouter.get('/:blogId', (req, res) => {
-  res.json({blog: db.blogs[req.params.blogId]});
+  res.send(db.blogs[req.params.blogId]);
 });
 
 blogRouter.post('/', (req, res) => {

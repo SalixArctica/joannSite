@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Grid, Col, Row } from 'react-bootstrap';
 import './css/Recipe.css';
+import CommentForm from './CommentForm';
 
 class Recipe extends Component {
   constructor(){
@@ -48,6 +49,7 @@ class Recipe extends Component {
                 </ol>
             </Col>
           </Row>
+          <CommentForm user="Hank"/>
         </Grid>
       );
     }

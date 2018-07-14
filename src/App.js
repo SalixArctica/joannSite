@@ -8,7 +8,6 @@ import RecipeForm from './components/RecipeForm';
 import BlogForm from './components/BlogForm';
 import Recipes from './components/Recipes';
 
-
 class App extends Component {
   render() {
     return (

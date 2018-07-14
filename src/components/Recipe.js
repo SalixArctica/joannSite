@@ -22,15 +22,15 @@ class Recipe extends Component {
       return(
         <Grid>
           <Row>
-            <Col lg={8}>
+            <Col lg={8} centered>
               <Image id="food" responsive rounded src={process.env.PUBLIC_URL + '/assets/' + this.state.recipe.image}></Image>
             </Col>
             <Col  lg={4}>
-              <h1>{this.state.recipe.name}</h1>
+              <h1 id="title">{this.state.recipe.name}</h1>
               <h4>Ingredients</h4>
               <ul>
                 {this.state.recipe.ingredients.map(ingredient =>
-                    <li key={ingredient}>{ingredient}</li>
+                    <li id="recipeLi" key={ingredient}>{ingredient}</li>
                 )}
               </ul>
             </Col>
@@ -41,7 +41,7 @@ class Recipe extends Component {
                 <ol>
                   {this.state.recipe.instructions.map(instruction =>
                     <div>
-                      <li>{instruction}</li>
+                      <li id="recipeLi">{instruction}</li>
                     </div>
                   )}
 

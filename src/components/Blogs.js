@@ -1,6 +1,16 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
+const  titleStyle = {
+  borderBottom: '1px dotted #777',
+  marginBottom: '15px',
+}
+
+const dateStyle = {
+  verticalAlign: 'text-bottom',
+  color: 'lightgrey',
+}
+
 class Blogs extends React.Component {
   constructor(){
     super();
@@ -23,13 +33,15 @@ class Blogs extends React.Component {
         <Grid>
           {this.state.blogs.map(blog =>
             <div>
-              <Row>
-                <Col lg={8}>
-                  <h1>{blog.title}</h1>
-                </Col>
-                <Col lg={4}>
-                  <p>{blog.date}</p>
-                </Col>
+              <Row style={titleStyle}>
+                <div>
+                  <Col lg={8}>
+                    <h1>{blog.title}</h1>
+                  </Col>
+                  <Col lg={4}>
+                    <p style={dateStyle}>{'posted on: ' + blog.date}</p>
+                  </Col>
+                </div>
               </Row>
               <Row>
                 <Col lg={12}>

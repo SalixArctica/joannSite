@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import FbLogin from './FbLogin.js'
 import './css/CustomNav.css'
 
-class  CustomNav extends React.Component {
+class  CustomNav extends Component {
   render() {
     return(
       <Navbar default collapseOnSelect>
@@ -23,6 +24,9 @@ class  CustomNav extends React.Component {
             </NavItem>
             <NavItem>
               <a id="navLink" src="www.hempworx.com/JoAnnL">HempWorx</a>
+            </NavItem>
+            <NavItem>
+              <FbLogin />
             </NavItem>
           </Nav>
         </Navbar.Collapse>

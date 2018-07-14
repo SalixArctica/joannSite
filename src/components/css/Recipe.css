@@ -1,3 +1,7 @@
-li {
-  margin-bottom: 15px;
+#recipeLi {
+  margin-bottom: 10px;
+}
+
+#title {
+  border-bottom: 1px dotted #777
 }

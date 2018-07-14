@@ -1,5 +1,10 @@
 import React from 'react';
-import {Grid, Col, Row, Button} from 'react-bootstrap';
+import {Image, Grid, Row, Button} from 'react-bootstrap';
+
+const inputStyle = {
+  width: '50%',
+  height: '100px',
+}
 
 class RecipeForm extends React.Component {
 
@@ -18,6 +23,13 @@ class RecipeForm extends React.Component {
     this.setState({ingredients: this.state.ingredients.concat([''])});
   }
 
+  removeIngredient = (event) => {
+    event.preventDefault();
+    let newArr = this.state.ingredients;
+    newArr.pop();
+    this.setState({ingredients: newArr});
+  }
+
   handleIngredientChange = (id) => (event) => {
     const newIngredients = this.state.ingredients.map((ingredient, sidx) => {
       if (id !== sidx) return ingredient;
@@ -33,6 +45,13 @@ class RecipeForm extends React.Component {
   addInstruction = (event) => {
     event.preventDefault();
     this.setState({instructions: this.state.instructions.concat([''])});
+  }
+
+  removeInstruction = (event) => {
+    event.preventDefault();
+    let newArr = this.state.instructions;
+    newArr.pop();
+    this.setState({instructions: newArr});
   }
 
   handleinstructionChange = (id) => (event) => {
@@ -78,15 +97,17 @@ class RecipeForm extends React.Component {
                 <input type="text" id="ingredient" placeholder={'ingredient ' + (id + 1)} onChange={this.handleIngredientChange(id)}/>
               </div>
             ))}
-            <Button onClick={this.addIngredient}>add ingredient</Button>
+            <Button bsStyle="success" onClick={this.addIngredient}>+ ingredient</Button>
+            <Button bsStyle="danger" onClick={this.removeIngredient}>- ingredient</Button>
             {this.state.instructions.map((instruction, id) => (
               <div>
-                <input type="text" id="instruction" placeholder={'instruction ' + (id + 1)} onChange={this.handleinstructionChange(id)}/>
+                <textArea style={inputStyle} type="text" id="instruction" placeholder={'instruction ' + (id + 1)} onChange={this.handleinstructionChange(id)}/>
               </div>
             ))}
-            <Button onClick={this.addInstruction}>add instruction</Button>
+            <Button bsStyle="success" onClick={this.addInstruction}>+ instruction</Button>
+            <Button bsStyle="danger" onClick={this.removeInstruction}>- instruction</Button>
             <input type="file" onChange={this.handleFileAdd}/>
-            <input type="submit" value="Submit"/>
+            <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
         </form>
         </Row>
       </Grid>

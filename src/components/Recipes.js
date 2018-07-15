@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Image } from 'react-bootstrap';
+import { Button, Grid, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './css/Recipes.css';
 
@@ -18,6 +18,13 @@ const imageStyle = {
 
 const labelStyle = {
   textAlign: 'center',
+}
+
+const buttonStyle = {
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginTop: '100px'
 }
 
 class Recipes extends React.Component {
@@ -53,6 +60,7 @@ class Recipes extends React.Component {
           <Row>
             <span/>
           </Row>
+          <Link to='/recipes/post'><Button style={buttonStyle} bsStyle="info">Post New Recipe</Button></Link>
         </Grid>
       );
     }

@@ -31,10 +31,12 @@ class FbLogin extends React.Component {
       id: response.id,
       isLoggedIn: true,
     });
+    this.props.passUser(this.state);
   }
 
   logout = () => {
     this.setState({isLoggedIn: false});
+    window.location.reload();
   }
 
   componentClicked = () => console.log('component clicked');
@@ -56,6 +58,7 @@ class FbLogin extends React.Component {
         <FacebookLogin
             appId="210427716469851"
             fields="name,picture"
+            autoLoad
             callback={this.responseFacebook}
             render={renderProps => (
             <Button bsStyle="primary" style={buttonStyle} onClick={renderProps.onClick}>

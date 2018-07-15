@@ -5,15 +5,18 @@ let db = {
   recipes:  [
     {
       id: 0,
-      name: "Cured Meat",
-      ingredients: ['meat', 'salt'],
-      instructions:  ["put salt on meat", "wait...", "enjoy!"],
-      image: "meat.jpg",
+      name: "Tacos De Carne",
+      ingredients: ['meat', 'cheese', 'cilantro', 'flour tortillas'],
+      instructions:  ["cook the meat", "cook the tortillas", "add your preffered toppings", "enjoy!"],
+      image: "tacos.jpg",
       comments: [
         {
-          user: 'Hank Lancaster',
-          image: '',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus velit libero, a consequat lacus dignissim nec. Sed efficitur ultricies turpis sed pulvinar. Nunc semper tortor et faucibus ultricies. Nulla non malesuada sapien, non viverra felis. Mauris hendrerit ipsum blandit ex volutpat, sit amet dictum ante molestie. In in aliquam risus, sed pellentesque nisl. Proin et eleifend libero. Cras laoreet, libero in luctus sodales, urna metus faucibus elit, lobortis tincidunt urna lectus vel est. Ut ut semper dui. Nunc eleifend eget metus eget ornare.',
+          user: {
+            name: 'Hank Lancaster',
+            picture: 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2241380282544816&height=50&width=50&ext=1531930493&hash=AeQtB7qdRmPrQqwh',
+            id: '2241380282544816'
+          },
+          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus velit libero, a consequat lacus dignissim nec. Sed efficitur ultricies turpis sed pulvinar. Nunc semper tortor et faucibus ultricies. Nulla non malesuada sapien, non viverra felis. Mauris hendrerit ipsum blandit ex volutpat, sit amet dictum ante molestie. In in aliquam risus, sed pellentesque nisl. Proin et eleifend libero. Cras laoreet, libero in luctus sodales, urna metus faucibus elit, lobortis tincidunt urna lectus vel est. Ut ut semper dui. Nunc eleifend eget metus eget ornare.',
         },
       ],
     },

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Button, Grid, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const  titleStyle = {
   borderBottom: '1px dotted #777',
@@ -50,6 +51,7 @@ class Blogs extends React.Component {
               </Row>
             </div>
           )}
+          <Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>
         </Grid>
       );
     }

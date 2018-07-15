@@ -9,14 +9,23 @@ import BlogForm from './components/BlogForm';
 import Recipes from './components/Recipes';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {};
+  }
+
+  getUser = (user) => {
+    this.setState({user});
+  }
+
   render() {
     return (
       <div>
         <Router>
           <div>
-            <CustomNav/>
+            <CustomNav passUser={this.getUser}/>
             <Route exact path="/recipes" component={Recipes} />
-            <Route exact path="/recipes/:id" component={Recipe} />
+            <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} />} />
             <Route exact path="/recipes/post" component={RecipeForm} />
             <Route exact path="/" component={Home} />
             <Route path="/blog/post" component={BlogForm} />

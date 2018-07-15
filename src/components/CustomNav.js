@@ -5,6 +5,15 @@ import FbLogin from './FbLogin.js'
 import './css/CustomNav.css'
 
 class  CustomNav extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  passUser = (user) => {
+    this.props.passUser(user);
+  }
+
   render() {
     return(
       <Navbar default collapseOnSelect>
@@ -26,7 +35,7 @@ class  CustomNav extends Component {
               <a id="navLink" src="www.hempworx.com/JoAnnL">HempWorx</a>
             </NavItem>
             <NavItem>
-              <FbLogin />
+              <FbLogin passUser={this.passUser}/>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

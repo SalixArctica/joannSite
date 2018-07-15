@@ -26,19 +26,50 @@ class CommentForm extends Component {
     };
   }
 
+  componentDidMount = () => {
+    this.setState({user: this.props.user})
+  }
+
+  handleChange = (event) => {
+    this.setState({comment: event.target.value})
+  }
+
+  handleSubmit = (event) => {
+    fetch('http://localhost:5000/api' + this.props.location, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    })
+    .then(window.location.reload());
+  }
+
   render() {
-    return(
-      <div>
-        <Row>
+    let output;
+
+    //check is user is logged in
+    if(this.props.user){
+      output = (
+         <Row>
           <Col xs={3} lg={1}>
-            <img style={ImageStyle} src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2241380282544816&height=50&width=50&ext=1531820086&hash=AeTTsz8keKMCXtkA"/>
-            <p style={nameStyle}>{this.props.user}</p>
+            <img style={ImageStyle} src={this.props.user.picture} alt={this.props.user.name}/>
+            <p style={nameStyle}>{this.props.user.name}</p>
           </Col>
           <Col lg={6} xs={9}>
-            <textarea style={textAreaStyle} placeholder="Your comment here!" />
-            <Button style={{float: "right", width: "100%"}} bsStyle="info">Submit</Button>
+            <textarea style={textAreaStyle} onChange={this.handleChange} placeholder="Your comment here!" />
+            <Button style={{float: "right", width: "100%"}} onClick={this.handleSubmit} bsStyle="info">Submit</Button>
           </Col>
         </Row>
+      );
+    } else{
+      output = <h3>Login to comment</h3>;
+    }
+
+    return(
+      <div>
+        {output}
       </div>
     )
   }

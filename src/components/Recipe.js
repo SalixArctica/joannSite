@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Grid, Col, Row } from 'react-bootstrap';
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
 import './css/Recipe.css';
 import CommentForm from './CommentForm';
 import Comment from './Comment'
@@ -10,6 +12,10 @@ class Recipe extends Component {
     this.state = {}
   }
 
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+  }
+
 //make api call
   componentDidMount(){
     fetch('http://localhost:5000/api' + this.props.location.pathname)
@@ -18,6 +24,18 @@ class Recipe extends Component {
       .catch(() => {
         console.log('err');
       })
+  }
+
+  renderComments = () => {
+    if(this.state.recipe.comments){
+      return (
+        this.state.recipe.comments.map(comment =>
+          <Comment comment={comment}/>
+        )
+      );
+    } else {
+      return null;
+    }
   }
 
   renderAfterApiCall = () =>{
@@ -53,10 +71,8 @@ class Recipe extends Component {
           <Row>
             <h3 id="title">Comments</h3>
           </Row>
-          {this.state.recipe.comments.map(comment =>
-            <Comment comment={comment}/>
-          )}
-          <CommentForm user="Hank"/>
+          {this.renderComments()}
+          <CommentForm location={this.props.location.pathname} user={this.props.user}/>
         </Grid>
       );
     }
@@ -73,4 +89,6 @@ class Recipe extends Component {
   }
 }
 
-export default Recipe;
+const RecipeWithRouter = withRouter(Recipe);
+
+export default RecipeWithRouter;

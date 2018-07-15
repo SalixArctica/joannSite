@@ -18,9 +18,11 @@ class  CustomNav extends Component {
     return(
       <Navbar default collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>
-            Joann Site
-          </Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand>
+              Joann Site
+            </Navbar.Brand>
+          </Link>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>

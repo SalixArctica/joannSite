@@ -19,7 +19,7 @@ class Blogs extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/blog')
+    fetch('https://joannsiteattempt.herokuapp.com/api/blog')
     .then(res => res.json())
     .then(blogs => this.setState({blogs}))
     .catch(err => {

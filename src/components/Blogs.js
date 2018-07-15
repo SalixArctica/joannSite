@@ -21,6 +21,7 @@ class Blogs extends React.Component {
   componentDidMount() {
     fetch('https://joannsiteattempt.herokuapp.com/api/blog')
     .then(res => res.json())
+    .then(res => console.log(res))
     .then(blogs => this.setState({blogs}))
     .catch(err => {
       console.log(err);
@@ -54,6 +55,10 @@ class Blogs extends React.Component {
           <Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>
         </Grid>
       );
+    } else {
+      return (
+        <h1>Loading...</h1>
+      )
     }
     else{
       return null;

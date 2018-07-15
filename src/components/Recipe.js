@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, Grid, Col, Row } from 'react-bootstrap';
 import './css/Recipe.css';
 import CommentForm from './CommentForm';
+import Comment from './Comment'
 
 class Recipe extends Component {
   constructor(){
@@ -9,6 +10,7 @@ class Recipe extends Component {
     this.state = {}
   }
 
+//make api call
   componentDidMount(){
     fetch('http://localhost:5000/api' + this.props.location.pathname)
       .then(res => res.json())
@@ -45,10 +47,15 @@ class Recipe extends Component {
                       <li id="recipeLi">{instruction}</li>
                     </div>
                   )}
-
                 </ol>
             </Col>
           </Row>
+          <Row>
+            <h3 id="title">Comments</h3>
+          </Row>
+          {this.state.recipe.comments.map(comment =>
+            <Comment comment={comment}/>
+          )}
           <CommentForm user="Hank"/>
         </Grid>
       );

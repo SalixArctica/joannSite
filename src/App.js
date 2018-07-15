@@ -20,7 +20,7 @@ class App extends Component {
             <Route exact path="/recipes/post" component={RecipeForm} />
             <Route exact path="/" component={Home} />
             <Route path="/blog/post" component={BlogForm} />
-            <Route path="/blog" component={Blogs} />
+            <Route exact path="/blog" component={Blogs} />
           </div>
         </Router>
       </div>

@@ -33,6 +33,10 @@ class FbLogin extends React.Component {
     });
   }
 
+  logout = () => {
+    this.setState({isLoggedIn: false});
+  }
+
   componentClicked = () => console.log('component clicked');
 
   render() {
@@ -43,7 +47,7 @@ class FbLogin extends React.Component {
         <div>
           <NavDropdown
             title={'Welcome, ' +this.state.name.substr(0, this.state.name.indexOf(' '))}>
-            <MenuItem>logout</MenuItem>
+            <MenuItem onClick={this.logout}>logout</MenuItem>
           </NavDropdown>
         </div>)
     }
@@ -51,7 +55,6 @@ class FbLogin extends React.Component {
       fbContent = (
         <FacebookLogin
             appId="210427716469851"
-            autoLoad
             fields="name,picture"
             callback={this.responseFacebook}
             render={renderProps => (

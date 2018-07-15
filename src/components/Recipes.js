@@ -34,7 +34,7 @@ class Recipes extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/recipes')
+    fetch('/api/recipes')
     .then(res => res.json())
     .then(recipes => this.setState({recipes}))
     .catch(err => {

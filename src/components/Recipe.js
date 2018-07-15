@@ -18,7 +18,7 @@ class Recipe extends Component {
 
 //make api call
   componentDidMount(){
-    fetch('http://localhost:5000/api' + this.props.location.pathname)
+    fetch('/api' + this.props.location.pathname)
       .then(res => res.json())
       .then(recipe => this.setState({recipe}))
       .catch(() => {

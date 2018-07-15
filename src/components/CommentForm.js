@@ -35,7 +35,7 @@ class CommentForm extends Component {
   }
 
   handleSubmit = (event) => {
-    fetch('https://joannsiteattempt.herokuapp.com/api' + this.props.location, {
+    fetch('/api' + this.props.location, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

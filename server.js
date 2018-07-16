@@ -13,13 +13,11 @@ const app = express();
 app.use(logging('dev'));
 app.use(bodyParser.json());
 
-/*
 app.use(express.static(path.resolve(__dirname, 'build')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 })
-*/
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

@@ -7,7 +7,7 @@ const recipeRouter = express.Router();
 //multer setup
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../public/assets')
+    cb(null, __dirname + '/../public/assets')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -26,18 +26,24 @@ recipeRouter.get('/:recipeId', (req, res) => {
 });
 
 //post recipe
-recipeRouter.post('/', upload.single('img'), (req, res) => {
-  let newRecipe = {};
-  newRecipe.id = db.nextRecipeId;
-  newRecipe.name = req.body.name;
-  newRecipe.ingredients = JSON.parse(req.body.ingredients);
-  newRecipe.instructions = JSON.parse(req.body.instructions);
-  newRecipe.image = req.file.filename;
+recipeRouter.post('/', upload.single('img'), (req, res, next) => {
+  try {
+    let newRecipe = {};
+    newRecipe.id = db.nextRecipeId;
+    newRecipe.name = req.body.name;
+    newRecipe.ingredients = JSON.parse(req.body.ingredients);
+    newRecipe.instructions = JSON.parse(req.body.instructions);
+    newRecipe.image = req.file.filename;
 
-  db.recipes.push(newRecipe);
-  db.nextRecipeId++;
+    db.recipes.push(newRecipe);
+    db.nextRecipeId++;
+  } catch (err) {
+    res.status(500).send();
+    next(err);
+  }
 
-  res.status(204).send();
+
+  res.status(204).json({message: "upload successful!"});
 });
 
 //post comment

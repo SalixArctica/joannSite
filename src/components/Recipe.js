@@ -77,7 +77,7 @@ class Recipe extends Component {
       );
     }
     else{
-      return <h>loading...</h>;
+      return <h style={{margin: "40%"}}>loading...</h>;
     }
   };
 

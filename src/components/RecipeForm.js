@@ -15,6 +15,7 @@ class RecipeForm extends React.Component {
       ingredients: [''],
       instructions: [''],
       selectedFile: null,
+      message: '',
     }
   }
 
@@ -69,6 +70,8 @@ class RecipeForm extends React.Component {
   }
 
   handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({message: 'waiting on response'});
 
     let fd = new FormData();
     fd.append('img', this.state.selectedFile, this.state.selectedFile.name)
@@ -85,14 +88,6 @@ class RecipeForm extends React.Component {
     })
     .then(res => res.json())
     .then(res => this.setState({message: res.message}))
-  }
-
-  renderMessage = () => {
-    if(this.state.message){
-      return (<p>{this.state.message}</p>)
-    } else {
-      return (<p>waiting for response</p>)
-    }
   }
 
   render(){
@@ -120,7 +115,7 @@ class RecipeForm extends React.Component {
             <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
         </form>
         </Row>
-        {this.renderMessage()}
+        <p>{this.state.message}</p>
       </Grid>
       </div>
     );

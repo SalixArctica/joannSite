@@ -39,7 +39,7 @@ class BlogForm extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('http://localhost:5000/api/blog/', {
+    fetch('/api/blog/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

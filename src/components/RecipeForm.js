@@ -76,13 +76,23 @@ class RecipeForm extends React.Component {
     fd.append('ingredients', JSON.stringify(this.state.ingredients));
     fd.append('instructions', JSON.stringify(this.state.instructions));
 
-    fetch('http://localhost:5000/api/recipes', {
+    fetch('/api/recipes', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
       },
       body: fd,
     })
+    .then(res => res.json())
+    .then(res => this.setState({message: res.message}))
+  }
+
+  renderMessage = () => {
+    if(this.state.message){
+      return (<p>{this.state.message}</p>)
+    } else {
+      return (<p>waiting for response</p>)
+    }
   }
 
   render(){
@@ -110,6 +120,7 @@ class RecipeForm extends React.Component {
             <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
         </form>
         </Row>
+        {this.renderMessage()}
       </Grid>
       </div>
     );

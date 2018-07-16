@@ -21,7 +21,6 @@ class Blogs extends React.Component {
   componentDidMount() {
     fetch('/api/blog')
     .then(res => res.json())
-    .then(res => console.log(res))
     .then(blogs => this.setState({blogs}))
     .catch(err => {
       console.log(err);
@@ -30,7 +29,6 @@ class Blogs extends React.Component {
 
   renderAfterApiCall = () => {
     if(this.state.blogs){
-      console.log(this.state.blogs);
       return (
         <Grid>
           {this.state.blogs.map(blog =>

@@ -42,8 +42,6 @@ recipeRouter.post('/', upload.single('img'), (req, res, next) => {
     res.status(500).send();
     next(err);
   }
-
-
   res.status(204).json({message: "upload successful!"});
 });
 

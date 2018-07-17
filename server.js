@@ -30,6 +30,10 @@ app.use('/api/blog', blogRouter);
 
 app.use('/api/recipes', recipeRouter);
 
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '/build', 'index.html'));
+});
+
 app.listen(port, ()=> {
   console.log(`Server listening on port ${port}`);
 });

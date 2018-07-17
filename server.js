@@ -1,5 +1,4 @@
 const express = require('express');
-const db = require('./api/db');
 const path = require('path');
 const logging = require('morgan');
 const bodyParser = require('body-parser');

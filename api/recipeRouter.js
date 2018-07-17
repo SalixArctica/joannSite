@@ -25,6 +25,11 @@ recipeRouter.get('/:recipeId', (req, res) => {
   res.send(db.recipes[req.params.recipeId]);
 });
 
+recipeRouter.delete('/:recipeId', (req, res) => {
+  db.recipes[req.params.recipeId] = null;
+  res.status(204).send();
+});
+
 //post recipe
 recipeRouter.post('/', upload.single('img'), (req, res, next) => {
   try {

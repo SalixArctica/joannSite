@@ -5,11 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const buttonStyle = {
-  marginTop: '-5px',
-  padding: '3px',
-  backgroundColor: '#3B5998 !important',
-  border: '0px',
-
+  color: 'white !important',
 }
 
 class FbLogin extends React.Component {
@@ -60,9 +56,9 @@ class FbLogin extends React.Component {
             fields="name,picture"
             callback={this.responseFacebook}
             render={renderProps => (
-            <Button bsStyle="primary" style={buttonStyle} onClick={renderProps.onClick}>
+            <p style={buttonStyle} onClick={renderProps.onClick}>
               <FontAwesomeIcon icon={faFacebook} /> login
-            </Button>
+            </p>
             )}
         />);
     }

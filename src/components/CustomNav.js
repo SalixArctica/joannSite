@@ -34,7 +34,7 @@ class  CustomNav extends Component {
               <Link id="navLink" to="/recipes">Recipes</Link>
             </NavItem>
             <NavItem>
-              <a id="navLink" src="www.hempworx.com/JoAnnL">HempWorx</a>
+              <Link id="navLink" to="#" onClick={()=>window.location="http://www.hempworx.com/JoAnnL"}>HempWorx</Link>
             </NavItem>
             <NavItem>
               <FbLogin passUser={this.passUser}/>

@@ -27,28 +27,46 @@ class Blogs extends React.Component {
     })
   }
 
+  handleDelete = (id) => {
+    fetch('/api/blog/' + id, {
+      method: 'DELETE',
+    })
+    .then(window.location.reload());
+  }
+
+  renderBlog = (blog) => {
+    if(blog) {
+      return (
+        <div>
+          <Row style={titleStyle}>
+            <div>
+              <Col lg={8}>
+                <h1>{blog.title}</h1>
+              </Col>
+              <Col lg={4}>
+                <p style={dateStyle}>{'posted on: ' + blog.date}</p>
+              </Col>
+            </div>
+          </Row>
+          <Row>
+            <Col lg={12}>
+              <p>{blog.content}</p>
+            </Col>
+          </Row>
+          <Button bsStyle="danger" onClick={() => this.handleDelete(blog.id)}>Delete</Button>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   renderAfterApiCall = () => {
     if(this.state.blogs){
       return (
         <Grid>
           {this.state.blogs.map(blog =>
-            <div>
-              <Row style={titleStyle}>
-                <div>
-                  <Col lg={8}>
-                    <h1>{blog.title}</h1>
-                  </Col>
-                  <Col lg={4}>
-                    <p style={dateStyle}>{'posted on: ' + blog.date}</p>
-                  </Col>
-                </div>
-              </Row>
-              <Row>
-                <Col lg={12}>
-                  <p>{blog.content}</p>
-                </Col>
-              </Row>
-            </div>
+            this.renderBlog(blog)
           )}
           <Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>
         </Grid>

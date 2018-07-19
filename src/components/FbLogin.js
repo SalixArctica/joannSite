@@ -6,6 +6,7 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const buttonStyle = {
   color: 'white !important',
+  marginBottom: "0px",
 }
 
 class FbLogin extends React.Component {

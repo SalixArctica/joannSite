@@ -7,6 +7,7 @@ import Blogs from './components/Blogs'
 import RecipeForm from './components/RecipeForm';
 import BlogForm from './components/BlogForm';
 import Recipes from './components/Recipes';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor(){
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/blog/post" component={BlogForm} />
             <Route exact path="/blog" component={Blogs} />
+            <Footer />
           </div>
         </Router>
       </div>

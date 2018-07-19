@@ -3,11 +3,23 @@ const path = require('path');
 const logging = require('morgan');
 const bodyParser = require('body-parser');
 const blogRouter = require('./api/blogRouter');
-const recipeRouter = require('./api/recipeRouter')
+const recipeRouter = require('./api/recipeRouter');
+const fs = require('fs');
+const db = require('./api/db')
 
 const port = process.env.PORT || 5000;
 
 const app = express();
+
+getDb()
+.then(
+  (d) => {
+    db.data = d;
+  }
+)
+.catch(
+  (err) => console.log(err, err.stack)
+)
 
 app.use(logging('dev'));
 app.use(bodyParser.json());

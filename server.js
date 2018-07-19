@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const blogRouter = require('./api/blogRouter');
 const recipeRouter = require('./api/recipeRouter');
 const fs = require('fs');
+const db = require('./api/db')
 
 const port = process.env.PORT || 5000;
 
@@ -13,7 +14,7 @@ const app = express();
 getDb()
 .then(
   (d) => {
-    fs.writeFileSync(__dirname + '/api/database.json', JSON.stringify(d), (err) => {console.log(err);})
+    db.data = d;
   }
 )
 .catch(

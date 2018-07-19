@@ -32,12 +32,7 @@ getDb = () => {
   })
 }
 
-loadDb = () => {
-  let output = fs.readFileSync(__dirname + '/database.json', (err) => {if(err) console.log(err)});
-  return JSON.parse(output);
-}
-
-let data = loadDb();
+let data;
 
 saveDb = (d) => {
   fs.writeFile(__dirname + '/database.json', JSON.stringify(d), (err) => {console.log(err);})
@@ -76,4 +71,4 @@ function uploadToS3(filename, file, isImage) {
   });
 }
 
-module.exports = { data, loadDb, saveDb, uploadToS3, getDb };
+module.exports = { data, saveDb, uploadToS3, getDb };

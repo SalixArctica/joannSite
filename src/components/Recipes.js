@@ -42,20 +42,30 @@ class Recipes extends React.Component {
     })
   }
 
+  renderRecipe = (recipe) => {
+    if(recipe) {
+      return(
+        <div>
+            <Col md={3} sm={4} xs={12}>
+              <Link to={"/recipes/" + recipe.id}>
+                <Image style={imageStyle} centered circle thumbnail src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + recipe.image}/>
+                <h2 style={labelStyle}>{recipe.name}</h2>
+              </Link>
+            </Col>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   renderAfterApiCall = () => {
     if(this.state.recipes){
       return(
         <Grid>
           <h1 style = {titleStyle}>Recipes</h1>
           {this.state.recipes.recipes.map(recipe =>
-            <div>
-                <Col md={3} sm={4} xs={12}>
-                  <Link to={"/recipes/" + recipe.id}>
-                    <Image style={imageStyle} centered circle thumbnail src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + recipe.image}/>
-                    <h2 style={labelStyle}>{recipe.name}</h2>
-                  </Link>
-                </Col>
-            </div>
+            this.renderRecipe(recipe)
           )}
           <Row>
             <span/>

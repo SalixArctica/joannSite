@@ -1,6 +1,15 @@
 import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Popup from 'reactjs-popup'
+
+const centeredStyle = {
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  display: 'block',
+  width: '50%',
+  marginBottom: '20px'
+}
 
 const  titleStyle = {
   borderBottom: '1px dotted #777',
@@ -53,7 +62,21 @@ class Blogs extends React.Component {
               <p>{blog.content}</p>
             </Col>
           </Row>
-          <Button bsStyle="danger" onClick={() => this.handleDelete(blog.id)}>Delete</Button>
+          <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+            {close => (
+              <div>
+                <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this blog?</h2>
+                <Row>
+                  <Col xs={6}>
+                    <Button style={centeredStyle} onClick={() => this.handleDelete(blog.id)}>Yes</Button>
+                  </Col>
+                  <Col xs={6}>
+                    <Button style={centeredStyle} onClick={close}>No</Button>
+                  </Col>
+                </Row>
+              </div>
+            )}
+          </Popup>
         </div>
       );
     } else {

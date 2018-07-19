@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { Image, Grid, Col, Row } from 'react-bootstrap';
-import { withRouter } from 'react-router'
+import { Image, Grid, Col, Row, Button } from 'react-bootstrap';
+import { withRouter, Redirect } from 'react-router'
 import PropTypes from 'prop-types'
 import './css/Recipe.css';
 import CommentForm from './CommentForm';
-import Comment from './Comment'
+import Comment from './Comment';
+import Popup from 'reactjs-popup';
+
+const centeredStyle = {
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  display: 'block',
+  width: '50%',
+  marginBottom: '20px'
+}
 
 class Recipe extends Component {
   constructor(){
@@ -16,7 +25,7 @@ class Recipe extends Component {
     location: PropTypes.object.isRequired,
   }
 
-//make api call
+  //make api call
   componentDidMount(){
     fetch('/api' + this.props.location.pathname)
       .then(res => res.json())
@@ -36,6 +45,13 @@ class Recipe extends Component {
     } else {
       return null;
     }
+  }
+
+  handleDelete = () => {
+    fetch('/api/recipes/' + this.state.recipe.id, {
+      method: "DELETE",
+    })
+    .then(this.props.history.push('/recipes'))
   }
 
   renderAfterApiCall = () =>{
@@ -67,6 +83,25 @@ class Recipe extends Component {
                   )}
                 </ol>
             </Col>
+          </Row>
+          <Row>
+            <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+              {close => (
+                <div>
+                  <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
+                  <Row>
+                    <Col xs={6}>
+                      <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
+                    </Col>
+                    <Col xs={6}>
+                      <Button style={centeredStyle} onClick={close}>No</Button>
+                    </Col>
+                  </Row>
+                </div>
+              )}
+            </Popup>
+
+            <Button bsStyle="warning">Edit</Button>
           </Row>
           <Row>
             <h3 id="title">Comments</h3>

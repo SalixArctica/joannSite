@@ -3,11 +3,22 @@ const path = require('path');
 const logging = require('morgan');
 const bodyParser = require('body-parser');
 const blogRouter = require('./api/blogRouter');
-const recipeRouter = require('./api/recipeRouter')
+const recipeRouter = require('./api/recipeRouter');
+const fs = require('fs');
 
 const port = process.env.PORT || 5000;
 
 const app = express();
+
+getDb()
+.then(
+  (d) => {
+    fs.writeFileSync(__dirname + '/api/database.json', JSON.stringify(d), (err) => {console.log(err);})
+  }
+)
+.catch(
+  (err) => console.log(err, err.stack)
+)
 
 app.use(logging('dev'));
 app.use(bodyParser.json());

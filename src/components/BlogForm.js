@@ -24,6 +24,13 @@ class BlogForm extends React.Component {
   componentDidMount = () => {
     let current = new Date;
     this.setState({date: current.toDateString()});
+    if(this.props.blog){
+      this.setState({
+        title: this.props.blog.title,
+        content: this.props.blog.content,
+        date: this.props.blog.data
+      });
+    }
   }
 
   handleTitleChange(event) {
@@ -39,14 +46,26 @@ class BlogForm extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('/api/blog/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.state)
-    })
+    //check if the form is being used to edit or post
+    if(this.props.isEdit){
+      fetch('/api/blog', { //then make the relevant request
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.state)
+      })
+    } else {
+      fetch('/api/blog/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.state)
+      })
+    }
   }
 
 

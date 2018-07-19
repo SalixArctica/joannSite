@@ -19,6 +19,16 @@ class RecipeForm extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    if(this.props.recipe) {
+      this.setState({
+        name: this.props.recipe.name,
+        ingredients: this.props.recipe.ingredients,
+        instructions: this.props.recipe.instructions,
+      });
+    }
+  }
+
   addIngredient = (event) => {
     event.preventDefault();
     this.setState({ingredients: this.state.ingredients.concat([''])});
@@ -74,20 +84,35 @@ class RecipeForm extends React.Component {
     this.setState({message: 'waiting on response'});
 
     let fd = new FormData();
-    fd.append('img', this.state.selectedFile, this.state.selectedFile.name)
+    if(this.state.selectedFile){
+      fd.append('img', this.state.selectedFile, this.state.selectedFile.name)
+    }
     fd.append('name', this.state.name);
     fd.append('ingredients', JSON.stringify(this.state.ingredients));
     fd.append('instructions', JSON.stringify(this.state.instructions));
 
-    fetch('/api/recipes', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-      },
-      body: fd,
-    })
-    .then(res => res.json())
-    .then(res => this.setState({message: res.message}))
+    if(this.props.editMode) {
+      fetch('/api/recipes/' + this.props.recipe.id, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: fd,
+      })
+      .then(res => res.json())
+      .then(res => this.setState({message: res.message}))
+    }
+    else {
+      fetch('/api/recipes', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: fd,
+      })
+      .then(res => res.json())
+      .then(res => this.setState({message: res.message}))
+    }
   }
 
   render(){
@@ -96,17 +121,17 @@ class RecipeForm extends React.Component {
         <Grid>
         <Row>
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
-            <input type="text" id="name" value={this.state.value} onChange={this.handleNameChange} placeholder="name"/>
+            <input type="text" id="name" value={this.state.name} onChange={this.handleNameChange} placeholder="name"/>
             {this.state.ingredients.map((ingredient, id) => (
               <div>
-                <input type="text" id="ingredient" placeholder={'ingredient ' + (id + 1)} onChange={this.handleIngredientChange(id)}/>
+                <input type="text" id="ingredient" value={ingredient} placeholder={'ingredient ' + (id + 1)} onChange={this.handleIngredientChange(id)}/>
               </div>
             ))}
             <Button bsStyle="success" onClick={this.addIngredient}>+ ingredient</Button>
             <Button bsStyle="danger" onClick={this.removeIngredient}>- ingredient</Button>
             {this.state.instructions.map((instruction, id) => (
               <div>
-                <textArea style={inputStyle} type="text" id="instruction" placeholder={'instruction ' + (id + 1)} onChange={this.handleinstructionChange(id)}/>
+                <textarea style={inputStyle} type="text" value={this.state.instructions[id]} id="instruction" placeholder={'instruction ' + (id + 1)} onChange={this.handleinstructionChange(id)}/>
               </div>
             ))}
             <Button bsStyle="success" onClick={this.addInstruction}>+ instruction</Button>

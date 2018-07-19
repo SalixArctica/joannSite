@@ -52,6 +52,30 @@ recipeRouter.post('/', upload.single('img'), (req, res, next) => {
   res.status(201).json({message: "upload successful!"});
 });
 
+recipeRouter.put('/:recipeId', upload.single('img'), (req, res, next) => {
+  try {
+    let newRecipe = {};
+    newRecipe.name = req.body.name;
+    newRecipe.id = req.params.recipeId;
+    newRecipe.ingredients = JSON.parse(req.body.ingredients);
+    newRecipe.instructions = JSON.parse(req.body.instructions);
+    if(req.file){
+      newRecipe.image = req.file.filename;
+      db.uploadToS3('images/' + req.file.filename, req.file.path, true);
+    }
+    else{
+      newRecipe.image = db.data.recipes[req.params.recipeId].image;
+    }
+    db.data.recipes[req.params.recipeId] = newRecipe;
+    db.saveDb(db.data);
+  }
+  catch (err) {
+    res.status(500).json({message: "error on upload"});
+    next(err);
+  }
+  res.status(201).json({message: "upload successful!"});
+});
+
 //post comment
 recipeRouter.post('/:recipeId', (req, res) => {
   db.data.recipes[req.params.recipeId].comments.push(req.body);

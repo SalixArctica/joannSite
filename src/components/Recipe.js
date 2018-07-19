@@ -6,6 +6,7 @@ import './css/Recipe.css';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import Popup from 'reactjs-popup';
+import RecipeForm from './RecipeForm';
 
 const centeredStyle = {
   marginLeft: 'auto',
@@ -56,60 +57,65 @@ class Recipe extends Component {
 
   renderAfterApiCall = () =>{
     if(this.state.recipe){
-      return(
-        <Grid>
-          <Row>
-            <Col lg={8} centered>
-              <Image id="food" responsive rounded src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.recipe.image}></Image>
-            </Col>
-            <Col  lg={4}>
-              <h1 id="title">{this.state.recipe.name}</h1>
-              <h4>Ingredients</h4>
-              <ul>
-                {this.state.recipe.ingredients.map(ingredient =>
-                    <li id="recipeLi" key={ingredient}>{ingredient}</li>
-                )}
-              </ul>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg = {12}>
-                <h2>Prep</h2>
-                <ol>
-                  {this.state.recipe.instructions.map(instruction =>
-                    <div>
-                      <li id="recipeLi">{instruction}</li>
-                    </div>
+      if(this.state.editMode) {
+        return <RecipeForm editMode={true} recipe={this.state.recipe}/>
+      }
+      else {
+        return(
+          <Grid>
+            <Row>
+              <Col lg={8} centered>
+                <Image id="food" responsive rounded src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.recipe.image}></Image>
+              </Col>
+              <Col  lg={4}>
+                <h1 id="title">{this.state.recipe.name}</h1>
+                <h4>Ingredients</h4>
+                <ul>
+                  {this.state.recipe.ingredients.map(ingredient =>
+                      <li id="recipeLi" key={ingredient}>{ingredient}</li>
                   )}
-                </ol>
-            </Col>
-          </Row>
-          <Row>
-            <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
-              {close => (
-                <div>
-                  <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
-                  <Row>
-                    <Col xs={6}>
-                      <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
-                    </Col>
-                    <Col xs={6}>
-                      <Button style={centeredStyle} onClick={close}>No</Button>
-                    </Col>
-                  </Row>
-                </div>
-              )}
-            </Popup>
+                </ul>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg = {12}>
+                  <h2>Prep</h2>
+                  <ol>
+                    {this.state.recipe.instructions.map(instruction =>
+                      <div>
+                        <li id="recipeLi">{instruction}</li>
+                      </div>
+                    )}
+                  </ol>
+              </Col>
+            </Row>
+            <Row>
+              <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+                {close => (
+                  <div>
+                    <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
+                    <Row>
+                      <Col xs={6}>
+                        <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
+                      </Col>
+                      <Col xs={6}>
+                        <Button style={centeredStyle} onClick={close}>No</Button>
+                      </Col>
+                    </Row>
+                  </div>
+                )}
+              </Popup>
 
-            <Button bsStyle="warning">Edit</Button>
-          </Row>
-          <Row>
-            <h3 id="title">Comments</h3>
-          </Row>
-          {this.renderComments()}
-          <CommentForm location={this.props.location.pathname} user={this.props.user}/>
-        </Grid>
-      );
+              <Button bsStyle="warning" onClick={() => this.setState({editMode: true})}>Edit</Button>
+            </Row>
+            <Row>
+              <h3 id="title">Comments</h3>
+            </Row>
+            {this.renderComments()}
+            <CommentForm location={this.props.location.pathname} user={this.props.user}/>
+          </Grid>
+        );
+      }
     }
     else{
       return <h style={{margin: "40%"}}>loading...</h>;

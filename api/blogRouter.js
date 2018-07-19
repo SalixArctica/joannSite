@@ -4,6 +4,7 @@ const db = require('./db');
 const blogRouter = express.Router();
 
 blogRouter.get('/', (req, res) => {
+  console.log(db.data);
   res.send(db.data.blogs);
 });
 

@@ -44,7 +44,7 @@ class Recipe extends Component {
         <Grid>
           <Row>
             <Col lg={8} centered>
-              <Image id="food" responsive rounded src={process.env.PUBLIC_URL + '/assets/' + this.state.recipe.image}></Image>
+              <Image id="food" responsive rounded src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.recipe.image}></Image>
             </Col>
             <Col  lg={4}>
               <h1 id="title">{this.state.recipe.name}</h1>

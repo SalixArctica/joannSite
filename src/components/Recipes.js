@@ -51,7 +51,7 @@ class Recipes extends React.Component {
             <div>
                 <Col md={3} sm={4} xs={12}>
                   <Link to={"/recipes/" + recipe.id}>
-                    <Image style={imageStyle} centered circle thumbnail src={process.env.PUBLIC_URL + '/assets/' + recipe.image}/>
+                    <Image style={imageStyle} centered circle thumbnail src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + recipe.image}/>
                     <h2 style={labelStyle}>{recipe.name}</h2>
                   </Link>
                 </Col>

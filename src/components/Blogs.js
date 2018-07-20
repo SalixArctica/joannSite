@@ -97,7 +97,7 @@ class Blogs extends React.Component {
     if(this.state.blogs){
       return (
         <Grid>
-          {this.state.blogs.map(blog =>
+          {this.state.blogs.slice(0).reverse().map(blog =>
             this.renderBlog(blog)
           )}
           {this.renderIfAdmin(<Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>)}

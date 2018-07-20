@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Grid } from 'react-bootstrap';
 import CustomNav from './components/CustomNav';
 import Recipe from './components/Recipe';
 import Home from './components/Home';
@@ -8,6 +9,7 @@ import RecipeForm from './components/RecipeForm';
 import BlogForm from './components/BlogForm';
 import Recipes from './components/Recipes';
 import Footer from './components/Footer';
+import './components/css/App.css';
 
 class App extends Component {
   constructor(){
@@ -22,10 +24,9 @@ class App extends Component {
   getAdmin = (isAdmin) => {
     this.setState({isAdmin}, () => console.log(this.state.isAdmin));
   }
-
   render() {
     return (
-      <div>
+      <div id="body">
         <Router>
           <div>
             <CustomNav passUser={this.getUser}/>
@@ -35,9 +36,11 @@ class App extends Component {
             <Route exact path="/" component={()=><Home passAdmin={this.getAdmin} />} />
             <Route path="/blog/post" component={BlogForm} />
             <Route exact path="/blog" component={()=> <Blogs isAdmin={this.state.isAdmin} />} />
-            <Footer />
           </div>
         </Router>
+        <div id="footer">
+          <Footer/>
+        </div>
       </div>
     );
   }

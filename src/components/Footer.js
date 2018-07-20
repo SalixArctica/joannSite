@@ -13,8 +13,8 @@ const textareaStyle = {
 function Footer(props) {
   return(
     <Grid>
-      <Row id="footer">
-        <Col lg={4} sm={12}>
+      <Row>
+        <Col lg={4} sm={12} id="footerItem" >
           <Popup trigger={<a>Report a bug</a>} modal>
             {close => (
               <div>
@@ -28,16 +28,15 @@ function Footer(props) {
                 <Row>
                   <Button stlye={textareaStyle} bsStyle="primary">Submit</Button>
                 </Row>
-
               </div>
             )}
           </Popup>
         </Col>
-        <Col lg={4} sm={12}>
-          <p id="footerItem">{'<Created by Hank Lancaster/>'}</p>
+        <Col lg={4} sm={12} id="footerItem" >
+          <p>{'<Created by Hank Lancaster/>'}</p>
         </Col>
-        <Col lg={4} sm={12}>
-          <a id="footerItem" onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
+        <Col lg={4} sm={12} id="footerItem" >
+          <a onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
         </Col>
       </Row>
     </Grid>

@@ -73,7 +73,7 @@ class Recipes extends React.Component {
       return(
         <Grid>
           <h1 style = {titleStyle}>Recipes</h1>
-          {this.state.recipes.recipes.map(recipe =>
+          {this.state.recipes.recipes.slice(0).reverse().map(recipe =>
             this.renderRecipe(recipe)
           )}
           <Row>

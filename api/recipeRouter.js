@@ -59,6 +59,7 @@ recipeRouter.put('/:recipeId', upload.single('img'), (req, res, next) => {
     newRecipe.id = req.params.recipeId;
     newRecipe.ingredients = JSON.parse(req.body.ingredients);
     newRecipe.instructions = JSON.parse(req.body.instructions);
+    newRecipe.comments = db.data.recipes[req.params.recipeId].comments;
     if(req.file){
       newRecipe.image = req.file.filename;
       db.uploadToS3('images/' + req.file.filename, req.file.path, true);

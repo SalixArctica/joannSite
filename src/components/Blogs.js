@@ -43,6 +43,14 @@ class Blogs extends React.Component {
     .then(window.location.reload());
   }
 
+  renderIfAdmin(thing){
+    if(this.props.isAdmin){
+      return thing;
+    } else{
+      return null;
+    }
+  }
+
   renderBlog = (blog) => {
     if(blog) {
       return (
@@ -62,7 +70,8 @@ class Blogs extends React.Component {
               <p>{blog.content}</p>
             </Col>
           </Row>
-          <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+          {this.renderIfAdmin(
+            <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
             {close => (
               <div>
                 <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this blog?</h2>
@@ -76,7 +85,7 @@ class Blogs extends React.Component {
                 </Row>
               </div>
             )}
-          </Popup>
+          </Popup>)}
         </div>
       );
     } else {
@@ -91,7 +100,7 @@ class Blogs extends React.Component {
           {this.state.blogs.map(blog =>
             this.renderBlog(blog)
           )}
-          <Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>
+          {this.renderIfAdmin(<Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>)}
         </Grid>
       );
     } else {

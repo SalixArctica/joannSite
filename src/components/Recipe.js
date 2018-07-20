@@ -36,6 +36,15 @@ class Recipe extends Component {
       })
   }
 
+  renderIfAdmin = (thing) => {
+    if(this.props.isAdmin) {
+      return thing;
+    }
+    else {
+      return null;
+    }
+  }
+
   renderComments = () => {
     if(this.state.recipe.comments){
       return (
@@ -90,23 +99,24 @@ class Recipe extends Component {
               </Col>
             </Row>
             <Row>
-              <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
-                {close => (
-                  <div>
-                    <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
-                    <Row>
-                      <Col xs={6}>
-                        <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
-                      </Col>
-                      <Col xs={6}>
-                        <Button style={centeredStyle} onClick={close}>No</Button>
-                      </Col>
-                    </Row>
-                  </div>
-                )}
-              </Popup>
-
-              <Button bsStyle="warning" onClick={() => this.setState({editMode: true})}>Edit</Button>
+              {this.renderIfAdmin(
+                <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+                  {close => (
+                    <div>
+                      <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
+                      <Row>
+                        <Col xs={6}>
+                          <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
+                        </Col>
+                        <Col xs={6}>
+                          <Button style={centeredStyle} onClick={close}>No</Button>
+                        </Col>
+                      </Row>
+                    </div>
+                  )}
+                </Popup>
+              )}
+              {this.renderIfAdmin(<Button bsStyle="warning" onClick={() => this.setState({editMode: true})}>Edit</Button>)}
             </Row>
             <Row>
               <h3 id="title">Comments</h3>

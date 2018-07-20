@@ -19,18 +19,22 @@ class App extends Component {
     this.setState({user});
   }
 
+  getAdmin = (isAdmin) => {
+    this.setState({isAdmin}, () => console.log(this.state.isAdmin));
+  }
+
   render() {
     return (
       <div>
         <Router>
           <div>
             <CustomNav passUser={this.getUser}/>
-            <Route exact path="/recipes" component={Recipes} />
-            <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} />} />
+            <Route exact path="/recipes" component={()=> <Recipes isAdmin={this.state.isAdmin} />} />
+            <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} isAdmin={this.state.isAdmin} />} />
             <Route exact path="/recipes/post" component={RecipeForm} />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={()=><Home passAdmin={this.getAdmin} />} />
             <Route path="/blog/post" component={BlogForm} />
-            <Route exact path="/blog" component={Blogs} />
+            <Route exact path="/blog" component={()=> <Blogs isAdmin={this.state.isAdmin} />} />
             <Footer />
           </div>
         </Router>

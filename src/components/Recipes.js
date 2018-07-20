@@ -42,6 +42,15 @@ class Recipes extends React.Component {
     })
   }
 
+  renderIfAdmin = (thing) => {
+    if(this.props.isAdmin) {
+      return thing;
+    }
+    else {
+      return null;
+    }
+  }
+
   renderRecipe = (recipe) => {
     if(recipe) {
       return(
@@ -70,7 +79,7 @@ class Recipes extends React.Component {
           <Row>
             <span/>
           </Row>
-          <Link to='/recipes/post'><Button style={buttonStyle} bsStyle="info">Post New Recipe</Button></Link>
+          {this.renderIfAdmin(<Link to='/recipes/post'><Button style={buttonStyle} bsStyle="info">Post New Recipe</Button></Link>)}
         </Grid>
       );
     }

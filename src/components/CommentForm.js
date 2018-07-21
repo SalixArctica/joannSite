@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Row, Button} from 'react-bootstrap';
+import FbLogin from './FbLogin';
 
 const textAreaStyle = {
   resize: 'none',
@@ -64,7 +65,13 @@ class CommentForm extends Component {
         </Row>
       );
     } else{
-      output = <h3>Login to comment</h3>;
+      output = (
+        <Row>
+          <Button>
+          <FbLogin passUser={this.props.passUser} />
+          </Button>
+        </Row>
+      );
     }
 
     return(

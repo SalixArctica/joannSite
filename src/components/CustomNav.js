@@ -34,10 +34,10 @@ class  CustomNav extends Component {
               <Link id="navLink" to="/recipes">Recipes</Link>
             </NavItem>
             <NavItem>
-              <Link id="navLink" to="#" onClick={()=>window.location="http://www.hempworx.com/JoAnnL"}>HempWorx</Link>
+              <Link id="navLink" to='' onClick={()=>window.open("http://www.hempworx.com/JoAnnL", "_blank")}>HempWorx</Link>
             </NavItem>
             <NavItem>
-              <FbLogin passUser={this.passUser}/>
+              <FbLogin getUser={this.props.user} passUser={this.passUser}/>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

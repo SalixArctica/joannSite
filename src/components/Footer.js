@@ -15,7 +15,7 @@ function Footer(props) {
     <Grid>
       <Row>
         <Col lg={4} sm={12} id="footerItem" >
-          <Popup trigger={<a>Report a bug</a>} modal>
+          <Popup trigger={<a href='#'>Report a bug</a>} modal>
             {close => (
               <div>
                 <h2>Bug reporter</h2>
@@ -36,7 +36,7 @@ function Footer(props) {
           <p>{'<Created by Hank Lancaster/>'}</p>
         </Col>
         <Col lg={4} sm={12} id="footerItem" >
-          <a onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
+          <a href='#' onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
         </Col>
       </Row>
     </Grid>

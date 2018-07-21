@@ -29,9 +29,9 @@ class App extends Component {
       <div id="body">
         <Router>
           <div>
-            <CustomNav passUser={this.getUser}/>
+            <CustomNav user={this.state} passUser={this.getUser}/>
             <Route exact path="/recipes" component={()=> <Recipes isAdmin={this.state.isAdmin} />} />
-            <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} isAdmin={this.state.isAdmin} />} />
+            <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} passUser={this.getUser} isAdmin={this.state.isAdmin} />} />
             <Route exact path="/recipes/post" component={RecipeForm} />
             <Route exact path="/" component={()=><Home passAdmin={this.getAdmin} />} />
             <Route path="/blog/post" component={BlogForm} />

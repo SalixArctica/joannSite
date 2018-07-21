@@ -20,6 +20,12 @@ class FbLogin extends React.Component {
     }
   }
 
+  getUser = (user) => {
+    if(user.isLoggedIn) {
+      this.setState({user});
+    }
+  }
+
   responseFacebook = (response) => {
     console.log(response);
     this.setState({

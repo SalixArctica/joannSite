@@ -122,7 +122,7 @@ class Recipe extends Component {
               <h3 id="title">Comments</h3>
             </Row>
             {this.renderComments()}
-            <CommentForm location={this.props.location.pathname} user={this.props.user}/>
+            <CommentForm passUser={this.props.passUser} location={this.props.location.pathname} user={this.props.user}/>
           </Grid>
         );
       }

@@ -4,8 +4,8 @@ const path = require('path');
 const AWS = require('aws-sdk');
 
 const BUCKET_NAME = 'joannstorage';
-const IAM_USER_KEY = AWS_ACCESS_KEY_ID;
-const IAM_USER_SECRET = AWS_SECRET_ACCESS_KEY;
+const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
+const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 
 AWS.config.update({
   accessKeyId: IAM_USER_KEY,

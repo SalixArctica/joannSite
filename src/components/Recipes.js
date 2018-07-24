@@ -84,7 +84,7 @@ class Recipes extends React.Component {
       );
     }
     else{
-      return <h3>loading...</h3>;
+      return null;
     }
   }
 

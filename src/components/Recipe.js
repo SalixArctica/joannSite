@@ -128,7 +128,7 @@ class Recipe extends Component {
       }
     }
     else{
-      return <h style={{margin: "40%"}}>loading...</h>;
+      return null;
     }
   };
 

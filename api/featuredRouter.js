@@ -32,7 +32,7 @@ featuredRouter.post('/product', upload.single('img'), (req, res, next) => {
 });
 
 featuredRouter.post('/recipe', (req, res) => {
-  db.data.featured.recipe = db.data.recipes[req.body.id];
+  db.data.featured.recipe = req.body;
   db.saveDb(db.data);
 });
 

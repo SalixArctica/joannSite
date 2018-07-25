@@ -64,6 +64,17 @@ class Recipe extends Component {
     .then(this.props.history.push('/recipes'))
   }
 
+  handleFeature = () => {
+    fetch('/api/featured/recipe' , {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.recipe)
+    })
+  }
+
   renderAfterApiCall = () =>{
     if(this.state.recipe){
       if(this.state.editMode) {
@@ -100,23 +111,27 @@ class Recipe extends Component {
             </Row>
             <Row>
               {this.renderIfAdmin(
-                <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
-                  {close => (
-                    <div>
-                      <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
-                      <Row>
-                        <Col xs={6}>
-                          <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
-                        </Col>
-                        <Col xs={6}>
-                          <Button style={centeredStyle} onClick={close}>No</Button>
-                        </Col>
-                      </Row>
-                    </div>
-                  )}
-                </Popup>
+                <div>
+                  <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
+                    {close => (
+                      <div>
+                        <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Are you sure you want to delete this recipe?</h2>
+                        <Row>
+                          <Col xs={6}>
+                            <Button style={centeredStyle} onClick={() => this.handleDelete()}>Yes</Button>
+                          </Col>
+                          <Col xs={6}>
+                            <Button style={centeredStyle} onClick={close}>No</Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    )}
+                  </Popup>
+                  <Button bsStyle="warning" onClick={() => this.setState({editMode: true})}>Edit</Button>
+                  <Button onClick={() => this.handleFeature()}>Feature</Button>
+                </div>
               )}
-              {this.renderIfAdmin(<Button bsStyle="warning" onClick={() => this.setState({editMode: true})}>Edit</Button>)}
+
             </Row>
             <Row>
               <h3 id="title">Comments</h3>

@@ -27,6 +27,7 @@ const featuredStyle = {
 const featuredImageStyle = {
   width: '40%',
   float: 'left',
+  marginRight: '10px',
 }
 
 const imageStyle = {
@@ -34,6 +35,14 @@ const imageStyle = {
   float: 'right',
   margin: '10px',
   marginTop: '0',
+}
+
+const recipeImageStyle = {
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginBottom: '10px',
+  width: '60%'
 }
 
 const buttonStyle = {
@@ -95,8 +104,8 @@ class Home extends Component {
               <h2 style={titleStyle}> Featured Recipe</h2>
               <div style={{overflow: 'auto'}}>
               <Link to='#' style={featuredStyle}>
-                <Image style={featuredImageStyle} rounded src={process.env.PUBLIC_URL + '/assets/tacos.jpg'}/>
-                <h3>Tacos de Carne</h3>
+                <Image style={recipeImageStyle} rounded src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.featured.recipe.image}/>
+                <h3 style={{textAlign: 'center'}}>{this.state.featured.recipe.name}</h3>
               </Link>
             </div>
             </Col>

@@ -24,6 +24,7 @@ blogRouter.post('/', (req, res) => {
   db.data.nextBlogId++;
 
   db.data.blogs.push(newBlog);
+  db.data.featured.blog = newBlog;
   db.saveDb(db.data);
   res.status(204).send();
 });

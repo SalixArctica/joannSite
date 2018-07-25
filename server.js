@@ -4,6 +4,7 @@ const logging = require('morgan');
 const bodyParser = require('body-parser');
 const blogRouter = require('./api/blogRouter');
 const recipeRouter = require('./api/recipeRouter');
+const featuredRouter = require('./api/featuredRouter');
 const fs = require('fs');
 const db = require('./api/db');
 require('dotenv').config();
@@ -41,6 +42,8 @@ app.use(function(req, res, next) {
 app.use('/api/blog', blogRouter);
 
 app.use('/api/recipes', recipeRouter);
+
+app.use('/api/featured', featuredRouter);
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'build', 'index.html'));

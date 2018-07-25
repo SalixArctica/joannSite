@@ -7,7 +7,7 @@ import ReactSvg from 'react-svg';
 
 
 const textareaStyle = {
-  width: '50%',
+  width: '90%',
   height: '100px',
   resize: 'none'
 }
@@ -34,6 +34,7 @@ function Footer(props) {
                 </div>
               )}
             </Popup>
+            <a href='#'><p>disclaimer</p></a>
           </Col>
           <Col xs={3} lg={1}>
             <a href='#' onClick={() => window.location='https://twitter.com'}>
@@ -50,6 +51,7 @@ function Footer(props) {
             <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/google.svg'} />
           </Col>
           <Col lg={4} sm={12} id="footerItem" >
+            <p>Created by:</p>
             <a href='#' onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
           </Col>
         </div>

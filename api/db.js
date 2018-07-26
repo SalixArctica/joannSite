@@ -66,7 +66,6 @@ function uploadToS3(filename, file, isImage) {
           console.log(err);
         }
         console.log('success');
-        console.log(data);
       });
   });
 }

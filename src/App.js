@@ -10,6 +10,7 @@ import BlogForm from './components/BlogForm';
 import Recipes from './components/Recipes';
 import Footer from './components/Footer';
 import ProductForm from './components/ProductForm';
+import Blog from './components/Blog';
 import './components/css/App.css';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
             <Route exact path="/" component={()=><Home isAdmin={this.state.isAdmin} passAdmin={this.getAdmin} />} />
             <Route path="/blog/post" component={BlogForm} />
             <Route exact path="/blog" component={()=> <Blogs isAdmin={this.state.isAdmin} />} />
+            <Route exact path="/blog/:id" component={()=><Blog isAdmin={this.state.isAdmin} user={this.state.user} />} />
             <Route exact path="/productform" component={ProductForm} />
           </div>
         </Router>

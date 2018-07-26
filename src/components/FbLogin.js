@@ -60,6 +60,7 @@ class FbLogin extends React.Component {
       fbContent = (
         <FacebookLogin
             appId="210427716469851"
+            autoLoad
             fields="name,picture"
             callback={this.responseFacebook}
             render={renderProps => (

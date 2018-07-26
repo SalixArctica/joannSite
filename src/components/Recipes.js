@@ -80,6 +80,7 @@ class Recipes extends React.Component {
             <span/>
           </Row>
           {this.renderIfAdmin(<Link to='/recipes/post'><Button style={buttonStyle} bsStyle="info">Post New Recipe</Button></Link>)}
+          <div style={{marginBottom: '100px'}}/>
         </Grid>
       );
     }

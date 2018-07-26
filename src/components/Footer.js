@@ -17,8 +17,8 @@ function Footer(props) {
     <Grid>
       <Row>
         <div className="socialIcons">
-          <Col lg={4} sm={12} id="footerItem" >
-            <Popup trigger={<a href='#'>Report a bug</a>} modal>
+          <Col xs={12} sm={4} id="footerItem" >
+            <Popup trigger={<a href='#'><p>Report a bug</p></a>} modal>
               {close => (
                 <div>
                   <h2>Bug reporter</h2>
@@ -35,22 +35,23 @@ function Footer(props) {
               )}
             </Popup>
             <a href='#'><p>disclaimer</p></a>
+            <a href='#'><p>privacy policy</p></a>
           </Col>
-          <Col xs={3} lg={1}>
+          <Col xs={3} sm={1}>
             <a href='#' onClick={() => window.location='https://twitter.com'}>
               <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/twitter.svg'} />
             </a>
           </Col>
-          <Col xs={3} lg={1}>
+          <Col xs={3} sm={1}>
             <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/facebook.svg'} />
           </Col>
-          <Col xs={3} lg={1}>
+          <Col xs={3} sm={1}>
             <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/linkedin.svg'} />
           </Col>
-          <Col xs={3} lg={1}>
+          <Col xs={3} sm={1}>
             <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/google.svg'} />
           </Col>
-          <Col lg={4} sm={12} id="footerItem" >
+          <Col xs={12} sm={4} id="footerItem" >
             <p>Created by:</p>
             <a href='#' onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
           </Col>

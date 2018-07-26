@@ -147,7 +147,9 @@ class Home extends Component {
           </Col>
         </Row>
         {this.renderAfterApiCall()}
+        <div style={{marginBottom: "100px"}} />
       </Grid>
+
     )
   }
 }

@@ -19,7 +19,7 @@ const centeredStyle = {
 class Recipe extends Component {
   constructor(){
     super();
-    this.state = {}
+    this.state = {};
   }
 
   static propTypes = {
@@ -138,6 +138,7 @@ class Recipe extends Component {
             </Row>
             {this.renderComments()}
             <CommentForm passUser={this.props.passUser} location={this.props.location.pathname} user={this.props.user}/>
+            <div style={{marginBottom: '100px'}}/>
           </Grid>
         );
       }

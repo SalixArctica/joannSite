@@ -70,6 +70,7 @@ class Blogs extends React.Component {
               <p>{blog.content}</p>
             </Col>
           </Row>
+          <Link to={'/blog/' + blog.id}><Button bsStyle="info">Comments</Button></Link>
           {this.renderIfAdmin(
             <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
             {close => (
@@ -101,6 +102,7 @@ class Blogs extends React.Component {
             this.renderBlog(blog)
           )}
           {this.renderIfAdmin(<Link to='/blog/post'><Button style={{marginTop: '50px'}} bsStyle="info">Post New Blog</Button></Link>)}
+          <div style={{marginBottom: '150px'}} sm={0} xs={12} />
         </Grid>
       );
     } else {

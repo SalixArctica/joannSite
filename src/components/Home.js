@@ -94,7 +94,7 @@ class Home extends Component {
   }
 
   renderAfterApiCall = () => {
-    if(this.state.featured) {
+    if(this.state.featured && this.state.featured.recipe && this.state.featured.blog && this.state.featured.product) {
       return(
         <div>
           <Row style={{marginTop: '50px'}}>

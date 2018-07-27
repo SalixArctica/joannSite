@@ -17,8 +17,8 @@ const upload = multer({ storage: storage })
 featuredRouter.post('/product', upload.single('img'), (req, res, next) => {
   try {
     let newProduct = {};
-    newProduct.name = req.body.name;
-    newProduct.description = req.body.description;
+    newProduct.name = JSON.parse(req.body.name);
+    newProduct.description = JSON.parse(req.body.description);
     newProduct.image = req.file.filename;
     db.uploadToS3('images/' + req.file.filename, req.file.path, true);
 

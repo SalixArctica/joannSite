@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const blogRouter = require('./api/blogRouter');
 const recipeRouter = require('./api/recipeRouter');
 const featuredRouter = require('./api/featuredRouter');
+const bugRouter = require('./api/bugRouter');
 const fs = require('fs');
 const db = require('./api/db');
 require('dotenv').config();
@@ -44,6 +45,8 @@ app.use('/api/blog', blogRouter);
 app.use('/api/recipes', recipeRouter);
 
 app.use('/api/featured', featuredRouter);
+
+app.use('/api/bug', bugRouter);
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'build', 'index.html'));

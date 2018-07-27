@@ -53,10 +53,11 @@ const buttonStyle = {
 }
 
 class Home extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       isAdmin: false,
+      user: {},
     }
   }
 
@@ -81,6 +82,17 @@ class Home extends Component {
     }
   }
 
+  renderIfAdminUser = (thing) => {
+    if(this.props.user) {
+      if(this.props.user.id == '2241380282544816' || this.props.user.id == '212775956236949') {
+        return thing;
+      }
+    }
+    else {
+      return null;
+    }
+  }
+
   renderAfterApiCall = () => {
     if(this.state.featured) {
       return(
@@ -93,7 +105,7 @@ class Home extends Component {
                 <div style={{paddingLeft: '10px'}}>
                   <h3>{this.state.featured.product.name}</h3>
                   <p>{this.state.featured.product.description}</p>
-                  <Link to='#' style={featuredStyle}>
+                  <Link to='#' onClick={() => window.location='http://www.hempworx.com/JoAnnL'} style={featuredStyle}>
                     <Button bsStyle="info">Learn More</Button>
                     {this.renderIfAdmin(<Link to="/productform"><Button bsStyle="warning">Edit</Button></Link>)}
                   </Link>
@@ -103,7 +115,7 @@ class Home extends Component {
             <Col md={12} lg={6}>
               <h2 style={titleStyle}> Featured Recipe</h2>
               <div style={{overflow: 'auto'}}>
-              <Link to='#' style={featuredStyle}>
+              <Link to={'/recipes/' + this.state.featured.recipe.id} style={featuredStyle}>
                 <Image style={recipeImageStyle} rounded src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.featured.recipe.image}/>
                 <h3 style={{textAlign: 'center'}}>{this.state.featured.recipe.name}</h3>
               </Link>
@@ -114,15 +126,17 @@ class Home extends Component {
             <h2 style={titleStyle}>Latest Blog</h2>
           </Row>
           <Row>
-            <Col md={6}>
-              <h4>{this.state.featured.blog.title}</h4>
-            </Col>
-            <Col md={6}>
-              <p>{this.state.featured.blog.date}</p>
-            </Col>
-            <Col lg={12}>
-              <p>{this.state.featured.blog.content}</p>
-            </Col>
+              <Col md={6}>
+                <Link to={'/blog/' + this.state.featured.blog.id}>
+                  <h4>{this.state.featured.blog.title}</h4>
+                </Link>
+              </Col>
+              <Col md={6}>
+                <p>{this.state.featured.blog.date}</p>
+              </Col>
+              <Col lg={12}>
+                <p>{this.state.featured.blog.content}</p>
+              </Col>
           </Row>
         </div>
       );
@@ -143,7 +157,7 @@ class Home extends Component {
             <Image rounded style={imageStyle} src={process.env.PUBLIC_URL + '/assets/joann.jpg'}/>
             <p style={textStyle}>Quisque viverra tristique leo nec pharetra. Phasellus imperdiet, felis id tincidunt feugiat, tortor purus volutpat est, ac hendrerit velit velit at turpis. Aliquam varius elit nisi, a fringilla dui tempus non. Sed dui sem, convallis sed felis ut, pharetra condimentum lacus.
             Aliquam sollicitudin neque erat. Donec at maximus ex. Pellentesque eu efficitur lacus, sed tincidunt massa. Donec malesuada pulvinar lacus, sit amet tempor augue malesuada nec. Morbi ullamcorper dolor eu dolor auctor vulputate. Maecenas magna tellus, molestie ac purus non, rutrum euismod ante. Vivamus malesuada malesuada posuere. Mauris euismod ultricies dui, at imperdiet velit pharetra id. Mauris elementum massa eu justo commodo, tempus ornare nisi fringilla. Curabitur libero est, tincidunt ac pretium nec, feugiat a libero. Phasellus nisl felis, ultricies vel interdum nec, ultrices et leo.</p>
-            <Button type="checkbox" style={buttonStyle} id="adminChecker" onClick={this.adminChange}>Activate Admin Mode</Button>
+          {this.renderIfAdminUser(<Button style={buttonStyle} onClick={this.adminChange}>Activate Admin Mode</Button>)}
           </Col>
         </Row>
         {this.renderAfterApiCall()}

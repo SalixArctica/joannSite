@@ -28,7 +28,7 @@ class BlogForm extends React.Component {
       this.setState({
         title: this.props.blog.title,
         content: this.props.blog.content,
-        date: this.props.blog.data
+        date: this.props.blog.date
       });
     }
   }
@@ -47,8 +47,8 @@ class BlogForm extends React.Component {
 
   handleSubmit(event) {
     //check if the form is being used to edit or post
-    if(this.props.isEdit){
-      fetch('/api/blog', { //then make the relevant request
+    if(this.props.editMode){
+      fetch('/api/blog/' + this.props.blog.id, { //then make the relevant request
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -75,7 +75,7 @@ class BlogForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <Row>
             <Col lg={4}>
-                <input type="text" value={this.state.value} onChange={this.handleTitleChange} placeholder="title" />
+                <input type="text" value={this.state.title} onChange={this.handleTitleChange} placeholder="title" />
             </Col>
             <Col lg={4}/>
             <Col lg={4}>
@@ -84,7 +84,7 @@ class BlogForm extends React.Component {
           </Row>
           <Row>
             <Col lg={12}>
-                <textArea style={contentStyle} type="text" value={this.state.value} onChange={this.handleContentChange} placeholder="content" />
+                <textarea style={contentStyle} type="text" value={this.state.content} onChange={this.handleContentChange} placeholder="content" />
             </Col>
           </Row>
           <Row>

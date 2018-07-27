@@ -34,8 +34,8 @@ function Footer(props) {
                 </div>
               )}
             </Popup>
-            <a href='#'><p>disclaimer</p></a>
-            <a href='#'><p>privacy policy</p></a>
+            <Link href='#' to='/disclaimer'><p>disclaimer</p></Link>
+            <Link href='#' to='/privacy'><p>privacy policy</p></Link>
           </Col>
           <Col xs={3} sm={1}>
             <a href='#' onClick={() => window.location='https://twitter.com'}>

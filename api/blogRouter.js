@@ -35,4 +35,13 @@ blogRouter.post('/:blogId', (req, res) => {
   res.status(201).send();
 });
 
+blogRouter.put('/:blogId', (req, res) => {
+  let editedBlog = req.body;
+  editedBlog.comments = db.data.blogs[req.params.blogId].comments;
+
+  db.data.blogs[req.params.blogId] = editedBlog;
+  db.saveDb(db.data);
+  res.status(200).send();
+});
+
 module.exports = blogRouter;

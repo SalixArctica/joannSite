@@ -58,10 +58,10 @@ class Blogs extends React.Component {
           <Row style={titleStyle}>
             <div>
               <Col lg={8}>
-                <h1>{blog.title}</h1>
+                <Link to={'/blog/' + blog.id}><h1>{blog.title}</h1></Link>
               </Col>
               <Col lg={4}>
-                <p style={dateStyle}>{'posted on: ' + blog.date}</p>
+                <h1 /><p style={dateStyle}>{'posted on: ' + blog.date}</p>
               </Col>
             </div>
           </Row>
@@ -70,7 +70,7 @@ class Blogs extends React.Component {
               <p>{blog.content}</p>
             </Col>
           </Row>
-          <Link to={'/blog/' + blog.id}><Button bsStyle="info">Comments</Button></Link>
+          <Link to={'/blog/' + blog.id}><Button style={{marginTop: '20px'}} bsStyle="info">Comments</Button></Link>
           {this.renderIfAdmin(
             <Popup trigger={<Button bsStyle="danger">Delete</Button>} modal>
             {close => (

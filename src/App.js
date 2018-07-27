@@ -11,6 +11,8 @@ import Recipes from './components/Recipes';
 import Footer from './components/Footer';
 import ProductForm from './components/ProductForm';
 import Blog from './components/Blog';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import disclaimer from './components/Disclaimer';
 import './components/css/App.css';
 
 class App extends Component {
@@ -35,16 +37,18 @@ class App extends Component {
             <Route exact path="/recipes" component={()=> <Recipes isAdmin={this.state.isAdmin} />} />
             <Route exact path="/recipes/:id" component={()=><Recipe user={this.state.user} passUser={this.getUser} isAdmin={this.state.isAdmin} />} />
             <Route exact path="/recipes/post" component={RecipeForm} />
-            <Route exact path="/" component={()=><Home isAdmin={this.state.isAdmin} passAdmin={this.getAdmin} />} />
+            <Route exact path="/" component={()=><Home user={this.state.user} isAdmin={this.state.isAdmin} passAdmin={this.getAdmin} />} />
             <Route path="/blog/post" component={BlogForm} />
             <Route exact path="/blog" component={()=> <Blogs isAdmin={this.state.isAdmin} />} />
             <Route exact path="/blog/:id" component={()=><Blog isAdmin={this.state.isAdmin} user={this.state.user} />} />
             <Route exact path="/productform" component={ProductForm} />
+            <Route path="/privacy" component={PrivacyPolicy} />
+            <Route path="/disclaimer" component={disclaimer} />
+            <div id="footer">
+              <Footer/>
+            </div>
           </div>
         </Router>
-        <div id="footer">
-          <Footer/>
-        </div>
       </div>
     );
   }

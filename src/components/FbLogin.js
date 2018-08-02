@@ -50,10 +50,7 @@ class FbLogin extends React.Component {
     if(this.state.isLoggedIn) {
       fbContent = (
         <div>
-          <NavDropdown
-            title={'Welcome, ' +this.state.name.substr(0, this.state.name.indexOf(' '))}>
-            <MenuItem onClick={this.logout}>logout</MenuItem>
-          </NavDropdown>
+          <p style={{cursor: 'default'}}>{'Welcome, ' +this.state.name.substr(0, this.state.name.indexOf(' '))} </p>
         </div>)
     }
     else {

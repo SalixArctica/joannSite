@@ -97,6 +97,7 @@ class Blog extends React.Component {
                 <CommentForm passUser={this.props.passUser} location={this.props.location.pathname} user={this.props.user}/>
               </Row>
             </div>
+            <div style={{marginBottom: '100px'}}/>
           </Grid>
         );
       }

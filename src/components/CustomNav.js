@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import FbLogin from './FbLogin.js'
 import './css/CustomNav.css'
@@ -33,9 +33,20 @@ class  CustomNav extends Component {
             <NavItem>
               <Link id="navLink" to="/recipes">Recipes</Link>
             </NavItem>
-            <NavItem>
-              <Link id="navLink" to='' onClick={()=>window.open("http://www.hempworx.com/JoAnnL", "_blank")}>HempWorx</Link>
-            </NavItem>
+            <NavDropdown title="Products and Oppurtunities">
+              <MenuItem onClick={() => window.open('http://www.HempWorx.com/JoAnnL', '_blank')}>
+                HempWorx
+              </MenuItem>
+              <MenuItem onClick={() => window.open('http://www.MyDailyChoice.com/JoAnnL', '_blank')}>
+                My Daily Choice
+              </MenuItem>
+              <MenuItem onClick={() => window.open('http://www.HempWorxBizOp.com/JoAnnL', '_blank')}>
+                become HempWorx affiliate
+              </MenuItem>
+              <MenuItem onClick={() => window.open('http://www.WinWithMDC.com/JoAnnL', '_blank')}>
+                become My Daily Choice affiliate
+              </MenuItem>
+            </NavDropdown>
             <NavItem>
               <FbLogin getUser={this.props.user} passUser={this.passUser}/>
             </NavItem>

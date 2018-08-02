@@ -78,28 +78,28 @@ class Footer extends React.Component {
               <Link href='#' to='/privacy'><p>privacy policy</p></Link>
             </Col>
             <Col xs={3} sm={1}>
-              <a href='#' onClick={() => window.location='https://twitter.com/mimiskitchen55'}>
+              <a href='#' onClick={() => window.open('https://twitter.com/mimiskitchen55', '_blank')}>
                 <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/twitter.svg'} />
               </a>
             </Col>
             <Col xs={3} sm={1}>
-              <a href='#' onClick={() => window.location='https://www.facebook.com/joann.lancaster.313'}>
+              <a href='#' onClick={() => window.open('https://www.facebook.com/joann.lancaster.313', '_blank')}>
                 <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/facebook.svg'} />
               </a>
             </Col>
             <Col xs={3} sm={1}>
-              <a href='#' onClick={() => window.location='https://www.linkedin.com/in/joann-lancaster-819922159/'}>
+              <a href='#' onClick={() => window.open('https://www.linkedin.com/in/joann-lancaster-819922159/', '_blank')}>
                 <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/linkedin.svg'} />
               </a>
             </Col>
             <Col xs={3} sm={1}>
-              <a href='#' onClick={() => window.location='https://plus.google.com/+JoAnnLancasterHempworx'}>
+              <a href='#' onClick={() => window.open('https://plus.google.com/+JoAnnLancasterHempworx', '_blank')}>
                 <ReactSvg path={process.env.PUBLIC_URL + '/assets/logos/google.svg'} />
               </a>
             </Col>
             <Col xs={12} sm={4} id="footerItem" >
               <p>Created by:</p>
-              <a href='#' onClick={()=>window.location="https://tankcaster.github.io"}>tankcaster.github.io</a>
+              <a href='#' onClick={()=>window.open("https://tankcaster.github.io", '_blank')}>tankcaster.github.io</a>
             </Col>
           </div>
         </Row>

@@ -31,8 +31,7 @@ const featuredImageStyle = {
 }
 
 const imageStyle = {
-  width: '20%',
-  float: 'right',
+  width: '100%',
   margin: '10px',
   marginTop: '0',
 }
@@ -101,7 +100,7 @@ class Home extends Component {
             <Col md={12} lg={6}>
               <h2 style={titleStyle}> Featured Product</h2>
               <div style={{overflow: 'auto'}}>
-                <Image style={featuredImageStyle} src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.featured.product.image}/>
+                <Image rounded style={featuredImageStyle} src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.featured.product.image}/>
                 <div style={{paddingLeft: '10px'}}>
                   <h3>{this.state.featured.product.name}</h3>
                   <p>{this.state.featured.product.description}</p>
@@ -152,11 +151,18 @@ class Home extends Component {
         <Row show-grid>
           <Col xs={12}>
             <h1 style={titleStyle}>Welcome to Club HempWorx</h1>
-            <p style={textStyle}>   Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas finibus elit nec dignissim accumsan. Mauris faucibus metus at commodo facilisis. Suspendisse scelerisque malesuada interdum. Quisque lobortis sit amet lacus ut rutrum. Nulla vestibulum fermentum velit, vel convallis ipsum sodales et. Vivamus et turpis sed erat feugiat posuere. Pellentesque ut sem vel massa congue molestie. Sed semper nisl id dignissim vestibulum. Cras mattis in massa vitae placerat. Cras tempus sit amet orci eget maximus. Donec a tempor dui, sit amet semper dui. Nunc lacinia metus at justo convallis faucibus. Donec condimentum dapibus ex, non lacinia lorem sagittis id. Maecenas et felis non leo condimentum laoreet. Curabitur a mauris efficitur, ultricies risus et, aliquet neque.
-            Nulla condimentum tempus porttitor. </p>
-            <Image rounded style={imageStyle} src={process.env.PUBLIC_URL + '/assets/joann.jpg'}/>
-            <p style={textStyle}>Quisque viverra tristique leo nec pharetra. Phasellus imperdiet, felis id tincidunt feugiat, tortor purus volutpat est, ac hendrerit velit velit at turpis. Aliquam varius elit nisi, a fringilla dui tempus non. Sed dui sem, convallis sed felis ut, pharetra condimentum lacus.
-            Aliquam sollicitudin neque erat. Donec at maximus ex. Pellentesque eu efficitur lacus, sed tincidunt massa. Donec malesuada pulvinar lacus, sit amet tempor augue malesuada nec. Morbi ullamcorper dolor eu dolor auctor vulputate. Maecenas magna tellus, molestie ac purus non, rutrum euismod ante. Vivamus malesuada malesuada posuere. Mauris euismod ultricies dui, at imperdiet velit pharetra id. Mauris elementum massa eu justo commodo, tempus ornare nisi fringilla. Curabitur libero est, tincidunt ac pretium nec, feugiat a libero. Phasellus nisl felis, ultricies vel interdum nec, ultrices et leo.</p>
+            <Col xs={8}>
+              <p style={textStyle}>
+                Welcome To Cub Hempworx! Great to have you here..
+                We have 11 incredible Hemp-Derived CBD products in our HempWorx brand. These products consist of 6 Tinctures, 3 Topicals, and 2 Pet Products which all utilize NON-GMO, PESTICIDE FREE, CO2 Extracted Hemp Oil. Our products come from Industrial Hemp and contain less than .3% THC by dry weight.
+                We are committed to providing the most potent, pure, and effective Hemp products in the marketplace.
+                To learn more about our products, visit
+                <a onClick={() => window.open('http://www.HempWorx.com/JoAnnL', '_blank')} href='#'> http://www.HempWorx.com/JoAnnL</a>
+              </p>
+            </Col>
+            <Col xs={4}>
+              <Image rounded style={imageStyle} src={process.env.PUBLIC_URL + '/assets/joann.jpg'}/>
+            </Col>
           {this.renderIfAdminUser(<Button style={buttonStyle} onClick={this.adminChange}>Activate Admin Mode</Button>)}
           </Col>
         </Row>

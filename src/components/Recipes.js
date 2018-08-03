@@ -5,7 +5,6 @@ import './css/Recipes.css';
 
 const titleStyle = {
   borderBottom: '1px dotted #777',
-  marginBottom: '20px',
 }
 
 const imageStyle = {
@@ -30,7 +29,10 @@ const buttonStyle = {
 class Recipes extends React.Component {
   constructor() {
     super();
-    this.state = { recipes: null }
+    this.state = {
+      recipes: null,
+      search: '',
+     }
   }
 
   componentDidMount() {
@@ -51,8 +53,12 @@ class Recipes extends React.Component {
     }
   }
 
+  handleSearch = (event) => {
+    this.setState({search: event.target.value});
+  }
+
   renderRecipe = (recipe) => {
-    if(recipe) {
+    if(recipe && recipe.name.toLowerCase().includes(this.state.search.toLowerCase())) {
       return(
         <div>
             <Col md={3} sm={4} xs={12}>
@@ -73,6 +79,7 @@ class Recipes extends React.Component {
       return(
         <Grid>
           <h1 style = {titleStyle}>Recipes</h1>
+          <input onChange={this.handleSearch} placeholder="Search" type="text" style={{width: '100%', marginBottom: '20px'}}/>
           {this.state.recipes.recipes.slice(0).reverse().map(recipe =>
             this.renderRecipe(recipe)
           )}

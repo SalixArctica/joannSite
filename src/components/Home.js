@@ -103,8 +103,8 @@ class Home extends Component {
               <div style={{overflow: 'auto'}}>
                 <Image style={featuredImageStyle} src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + this.state.featured.product.image}/>
                 <div style={{paddingLeft: '10px'}}>
-                  <h3>{JSON.parse(this.state.featured.product.name)}</h3>
-                  <p>{JSON.parse(this.state.featured.product.description)}</p>
+                  <h3>{this.state.featured.product.name}</h3>
+                  <p>{this.state.featured.product.description}</p>
                   <Link to='#' onClick={() => window.open('http://www.hempworx.com/JoAnnL', '_blank')} style={featuredStyle}>
                     <Button bsStyle="info">Learn More</Button>
                     {this.renderIfAdmin(<Link to="/productform"><Button bsStyle="warning">Edit</Button></Link>)}

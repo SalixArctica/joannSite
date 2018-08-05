@@ -153,7 +153,7 @@ class Home extends Component {
             <h1 style={titleStyle}>Welcome to Club HempWorx</h1>
             <Col xs={8}>
               <p style={textStyle}>
-                Welcome To Cub Hempworx! Great to have you here..
+                Welcome To Club Hempworx! Great to have you here..
                 We have 11 incredible Hemp-Derived CBD products in our HempWorx brand. These products consist of 6 Tinctures, 3 Topicals, and 2 Pet Products which all utilize NON-GMO, PESTICIDE FREE, CO2 Extracted Hemp Oil. Our products come from Industrial Hemp and contain less than .3% THC by dry weight.
                 We are committed to providing the most potent, pure, and effective Hemp products in the marketplace.
                 To learn more about our products, visit

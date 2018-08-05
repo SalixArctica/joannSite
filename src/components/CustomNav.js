@@ -20,7 +20,7 @@ class  CustomNav extends Component {
         <Navbar.Header>
           <Link to="/">
             <Navbar.Brand>
-              Joann Site
+              Club HempWorx
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle />
@@ -33,7 +33,7 @@ class  CustomNav extends Component {
             <NavItem>
               <Link id="navLink" to="/recipes">Recipes</Link>
             </NavItem>
-            <NavDropdown title="Products and Oppurtunities">
+            <NavDropdown title="Products and Opportunities">
               <MenuItem onClick={() => window.open('http://www.HempWorx.com/JoAnnL', '_blank')}>
                 HempWorx
               </MenuItem>

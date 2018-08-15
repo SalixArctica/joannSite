@@ -35,7 +35,7 @@ getDb = () => {
 let data;
 
 saveDb = (d) => {
-  fs.writeFile(__dirname + '/database.json', JSON.stringify(d), (err) => {console.log(err);})
+  fs.writeFile(__dirname + '/database.json', JSON.stringify(d, null, 4), (err) => {console.log(err);})
   uploadToS3('database.json', d, false);
 }
 

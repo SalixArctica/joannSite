@@ -17,6 +17,9 @@ const imageStyle = {
 
 const labelStyle = {
   textAlign: 'center',
+  fontSize: '1.8rem',
+  height: '5rem',
+  marginBottom: '3rem',
 }
 
 const buttonStyle = {
@@ -39,6 +42,9 @@ class Recipes extends React.Component {
     fetch('/api/recipes')
     .then(res => res.json())
     .then(recipes => this.setState({recipes}))
+    .then(
+      this.setState({recipes: JSON.parse(this.state.recipes)})
+    )
     .catch(err => {
       console.log(err);
     })
@@ -58,17 +64,21 @@ class Recipes extends React.Component {
   }
 
   renderRecipe = (recipe) => {
-    if(recipe && recipe.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-      return(
-        <div>
-            <Col md={3} sm={4} xs={12}>
-              <Link to={"/recipes/" + recipe.id}>
-                <Image style={imageStyle} centered circle thumbnail src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + recipe.image}/>
-                <h2 style={labelStyle}>{recipe.name}</h2>
-              </Link>
-            </Col>
-        </div>
-      );
+    if(recipe) {
+      if(recipe.name.toLowerCase().includes(this.state.search.toLowerCase()) || recipe.tags.toString().toLowerCase().includes(this.state.search.toLowerCase())) {
+        return(
+          <div>
+              <Col md={3} sm={4} xs={12}>
+                <Link to={"/recipes/" + recipe.id}>
+                  <Image style={imageStyle} centered circle thumbnail src={'https://joannstorage.s3.us-east-2.amazonaws.com/images/' + recipe.image}/>
+                  <h2 style={labelStyle}>{recipe.name}</h2>
+                </Link>
+              </Col>
+          </div>
+        );
+      } else {
+        return null;
+      }
     } else {
       return null;
     }

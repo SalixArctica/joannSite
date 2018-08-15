@@ -14,6 +14,7 @@ class RecipeForm extends React.Component {
       name: '',
       ingredients: [''],
       instructions: [''],
+      tags: [''],
       selectedFile: null,
       message: '',
     }
@@ -47,6 +48,26 @@ class RecipeForm extends React.Component {
       return event.target.value;
     });
     this.setState({ ingredients: newIngredients });
+  }
+
+  addTag = (event) => {
+    event.preventDefault();
+    this.setState({ingredients: this.state.tags.concat([''])});
+  }
+
+  handleTagChange = (id) => (event) => {
+    const newTags = this.state.tags.map((tag, sidx) => {
+      if (id !== sidx) return tag;
+      return event.target.value;
+    });
+    this.setState({ tags: newTags });
+  }
+
+  removeTag = (event) => {
+    event.preventDefault();
+    let newArr = this.state.tags;
+    newArr.pop();
+    this.setState({ingredients: newArr});
   }
 
   handleNameChange = (event) => {
@@ -90,6 +111,7 @@ class RecipeForm extends React.Component {
     fd.append('name', this.state.name);
     fd.append('ingredients', JSON.stringify(this.state.ingredients));
     fd.append('instructions', JSON.stringify(this.state.instructions));
+    fd.append('tags', JSON.stringify(this.state.tags));
 
     if(this.props.editMode) {
       fetch('/api/recipes/' + this.props.recipe.id, {
@@ -121,6 +143,14 @@ class RecipeForm extends React.Component {
         <Grid>
         <Row>
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
+            <input type="text" id="name" value={this.state.name} onChange={this.handleNameChange} placeholder="tag"/>
+            {this.state.tags.map((tag, id) => (
+              <div>
+                <input type="text" id="tag" value={tag} placeholder={'tag ' + (id + 1)} onChange={this.handleTagChange(id)}/>
+              </div>
+            ))}
+            <Button bsStyle="success" onClick={this.addIngredient}>+ tag</Button>
+            <Button bsStyle="danger" onClick={this.removeIngredient}>- tag</Button>
             <input type="text" id="name" value={this.state.name} onChange={this.handleNameChange} placeholder="name"/>
             {this.state.ingredients.map((ingredient, id) => (
               <div>
